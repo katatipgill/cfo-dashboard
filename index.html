@@ -538,14 +538,9 @@ footer{
           <h2 style="font-size:16px;">ข่าวการเงินสำหรับ CFO</h2>
           <p>ข่าวเศรษฐกิจไทย, ตลาดโลก, อัตราแลกเปลี่ยน, และเทคโนโลยี/AI — เฉพาะวันนี้และเมื่อวาน</p>
         </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <button class="refresh-news-btn" id="triggerNewsBtn" onclick="triggerNewsWorkflow()" title="สั่งให้ GitHub Actions ดึงข่าวใหม่ทันที">
-            <span class="refresh-icon" id="triggerNewsIcon">⚡</span> หาข่าวใหม่
-          </button>
-          <button class="refresh-news-btn" onclick="resetGitHubToken()" title="ลบ GitHub Token เดิมแล้วใส่ใหม่" style="opacity:0.7;">
-            🔑 เปลี่ยน Token
-          </button>
-        </div>
+        <button class="refresh-news-btn" id="triggerNewsBtn" onclick="triggerNewsWorkflow()" title="สั่งให้ GitHub Actions ดึงข่าวใหม่ทันที">
+          <span class="refresh-icon" id="triggerNewsIcon">⚡</span> หาข่าวใหม่
+        </button>
       </div>
 
       <div id="triggerNewsStatus" class="trigger-news-status" style="display:none;"></div>
@@ -696,7 +691,10 @@ footer{
 
 <footer>
   <span>CFO Dashboard — Synnex Thailand</span>
-  <span>Layout shell · ยังไม่มี logic หรือข้อมูลจริง</span>
+  <span style="display:flex;align-items:center;gap:16px;">
+    <button onclick="resetGitHubToken()" style="background:none;border:none;padding:0;font-size:inherit;color:var(--text-faint);cursor:pointer;font-family:inherit;text-decoration:underline;text-underline-offset:2px;" title="เปลี่ยน GitHub Token">🔑 เปลี่ยน Token Github</button>
+    <span>Layout shell · ยังไม่มี logic หรือข้อมูลจริง</span>
+  </span>
 </footer>
 
 <script>
