@@ -807,42 +807,6 @@ async function fetchLiveFxRate(){
 fetchLiveFxRate();
 setInterval(fetchLiveFxRate, 5 * 60 * 1000);
 
-/* ============ FX CALCULATOR ============ */
-function calcFX(){
-  const budget = parseFloat(document.getElementById('calcBudgetRate').value) || 0;
-  const payable = parseFloat(document.getElementById('calcUsdPayable').value) || 0;
-  const done = parseFloat(document.getElementById('calcForwardDone').value) || 0;
-  const target = parseFloat(document.getElementById('calcTargetHedge').value) || 0;
-
-  const targetUsd = payable * (target / 100);
-  const needed = Math.max(targetUsd - done, 0);
-  const hedgeRatio = payable > 0 ? (done / payable * 100) : 0;
-  const thbNeeded = needed * budget;
-  const risk = payable * 0.50;
-
-  document.getElementById('calcForwardNeeded').textContent = needed.toFixed(2);
-  document.getElementById('calcHedgeRatio').textContent = hedgeRatio.toFixed(1) + '%';
-  document.getElementById('calcHedgeRatio').className = 'calc-result-val ' +
-    (hedgeRatio >= target ? 'calc-val-green' : (hedgeRatio >= target * 0.6 ? 'calc-val-amber' : 'calc-val-red'));
-  document.getElementById('calcThbNeeded').textContent = thbNeeded.toFixed(2);
-  document.getElementById('calcRisk').textContent = risk.toFixed(2);
-
-  const planEl = document.getElementById('calcActionPlan');
-  if(needed > 0.01){
-    planEl.innerHTML = '<strong>Action:</strong> ควรทำ Forward Contract เพิ่มอีก <strong>' + needed.toFixed(2) +
-      ' ล้าน USD</strong> เพื่อให้ถึง Target Hedge Ratio ที่ ' + target + '% (ปัจจุบัน ' + hedgeRatio.toFixed(1) +
-      '%) — ใช้เงินบาทประมาณ ' + thbNeeded.toFixed(2) + ' ล้านบาท ที่ Budget Rate ' + budget.toFixed(2);
-  } else {
-    planEl.innerHTML = '<strong>Action:</strong> Hedge Ratio ปัจจุบัน (' + hedgeRatio.toFixed(1) +
-      '%) ถึงเป้าหมายแล้ว ไม่ต้องทำ Forward เพิ่มในรอบนี้';
-  }
-}
-
-document.querySelectorAll('#calcBudgetRate, #calcUsdPayable, #calcForwardDone, #calcTargetHedge')
-  .forEach(el => el.addEventListener('input', calcFX));
-
-calcFX();
-
 /* ============ ASK CLAUDE: news research prompt ============ */
 /* ============ NEWS: read news-data.json (same-origin file, updated by GitHub Actions server-side — no CORS, no proxy needed) ============ */
 async function fetchSynnexNews(){
