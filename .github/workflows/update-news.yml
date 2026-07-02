@@ -30,7 +30,7 @@ jobs:
             "เศรษฐกิจไทย OR ธนาคารแห่งประเทศไทย OR ตลาดหุ้นไทย when:2d"
             "ตลาดหุ้นโลก OR Fed OR อัตราดอกเบี้ย OR inflation global markets when:2d"
             "ค่าเงินบาท ดอลลาร์ OR USD THB exchange rate when:2d"
-            "เทคโนโลยี AI OR อุตสาหกรรม IT ไทย OR artificial intelligence technology industry when:2d"
+            "เทคโนโลยี AI OR ปัญญาประดิษฐ์ Thailand when:2d"
           )
 
           CATEGORY_LABELS=("เศรษฐกิจไทย" "ตลาดโลก" "อัตราแลกเปลี่ยน" "เทคโนโลยี/AI")
@@ -69,7 +69,14 @@ jobs:
               return any(keyword.lower() in text for keyword in BLOCKED_KEYWORDS)
 
           seen_links = set()
+          seen_titles = set()
           all_items = []
+
+          def normalize_title(title):
+              # Collapse whitespace and lowercase, so the same headline republished
+              # by multiple outlets (each with its own Google-News tracking URL)
+              # is recognized as a duplicate even though the links differ.
+              return ' '.join(title.lower().split())
 
           for filepath in sorted(glob.glob('/tmp/feeds/feed_*.xml')):
               idx = int(filepath.split('_')[-1].split('.')[0])
@@ -82,15 +89,17 @@ jobs:
               root = tree.getroot()
               for item in root.findall('./channel/item')[:6]:
                   link = item.findtext('link') or ''
-                  if not link or link in seen_links:
-                      continue  # de-duplicate the same story appearing in multiple queries
-
                   title = item.findtext('title') or 'ไม่มีชื่อข่าว'
+                  norm_title = normalize_title(title)
+
+                  if not link or link in seen_links or norm_title in seen_titles:
+                      continue  # de-duplicate by URL or by matching headline text
 
                   if is_blocked(title, link):
                       continue  # skip gambling/spam SEO content
 
                   seen_links.add(link)
+                  seen_titles.add(norm_title)
 
                   pub_date = item.findtext('pubDate') or ''
                   source_el = item.find('source')
