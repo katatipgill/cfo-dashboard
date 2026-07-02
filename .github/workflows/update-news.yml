@@ -18,46 +18,115 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Fetch Synnex news from Google News RSS
+      - name: Fetch news relevant to a Synnex Thailand CFO
         run: |
-          QUERY='(Synnex Thailand OR SYNEX SET OR "บริษัท ซินเน็ค") when:14d'
-          ENCODED_QUERY=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$QUERY")
-          RSS_URL="https://news.google.com/rss/search?q=${ENCODED_QUERY}&hl=th&gl=TH&ceid=TH:th"
+          mkdir -p /tmp/feeds
 
-          # Fetch raw RSS as XML, then convert to a small JSON file the dashboard can read directly.
-          curl -sf -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "$RSS_URL" -o /tmp/news.xml
+          # Multiple targeted queries instead of one narrow one. A company the size of
+          # Synnex doesn't make daily headlines, so a CFO-relevant feed needs to also
+          # cover: the company/stock directly, the IT distribution industry in Thailand,
+          # competitors, and USD/THB (a direct cost driver for an importer/distributor).
+          # Running several queries and merging results makes "zero results today" rare
+          # without diluting relevance — each query is still narrowly on-topic.
+          declare -a QUERIES=(
+            "Synnex Thailand OR SYNEX SET OR \"บริษัท ซินเน็ค\""
+            "ตลาด IT ไทย OR \"ผู้จัดจำหน่ายไอที\" Thailand distributor technology"
+            "SiS Distribution Thailand OR Ingram Micro Thailand"
+            "ค่าเงินบาท ดอลลาร์ OR USD THB exchange rate Thailand"
+          )
+
+          INDEX=0
+          for QUERY in "${QUERIES[@]}"; do
+            ENCODED_QUERY=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$QUERY")
+            RSS_URL="https://news.google.com/rss/search?q=${ENCODED_QUERY}&hl=th&gl=TH&ceid=TH:th"
+            curl -sf -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
+              "$RSS_URL" -o "/tmp/feeds/feed_${INDEX}.xml" || echo "Query ${INDEX} failed, continuing"
+            INDEX=$((INDEX + 1))
+            sleep 2  # be polite between requests to the same upstream host
+          done
 
           python3 << 'PYEOF'
           import xml.etree.ElementTree as ET
           import json
+          import glob
           from datetime import datetime, timezone
+          from email.utils import parsedate_to_datetime
 
-          tree = ET.parse('/tmp/news.xml')
-          root = tree.getroot()
+          # Category labels, in the same order as the QUERIES array above, so each
+          # item can carry a tag showing *why* it's relevant to a Synnex CFO.
+          CATEGORY_LABELS = [
+              "Synnex",
+              "อุตสาหกรรม IT",
+              "คู่แข่ง",
+              "อัตราแลกเปลี่ยน"
+          ]
 
-          items = []
-          for item in root.findall('./channel/item')[:8]:
-              title = item.findtext('title') or 'ไม่มีชื่อข่าว'
-              link = item.findtext('link') or '#'
-              pub_date = item.findtext('pubDate') or ''
-              source_el = item.find('source')
-              source = source_el.text if source_el is not None else ''
-              items.append({
-                  "title": title,
-                  "link": link,
-                  "pubDate": pub_date,
-                  "source": source
-              })
+          seen_links = set()
+          all_items = []
+
+          for filepath in sorted(glob.glob('/tmp/feeds/feed_*.xml')):
+              idx = int(filepath.split('_')[-1].split('.')[0])
+              category = CATEGORY_LABELS[idx] if idx < len(CATEGORY_LABELS) else "ทั่วไป"
+              try:
+                  tree = ET.parse(filepath)
+              except ET.ParseError:
+                  continue  # skip a feed that failed to fetch/parse, don't crash the whole run
+
+              root = tree.getroot()
+              for item in root.findall('./channel/item')[:5]:
+                  link = item.findtext('link') or ''
+                  if not link or link in seen_links:
+                      continue  # de-duplicate the same story appearing in multiple queries
+                  seen_links.add(link)
+
+                  title = item.findtext('title') or 'ไม่มีชื่อข่าว'
+                  pub_date = item.findtext('pubDate') or ''
+                  source_el = item.find('source')
+                  source = source_el.text if source_el is not None else ''
+
+                  try:
+                      parsed_date = parsedate_to_datetime(pub_date)
+                  except (ValueError, TypeError):
+                      parsed_date = datetime.min.replace(tzinfo=timezone.utc)
+
+                  all_items.append({
+                      "title": title,
+                      "link": link,
+                      "pubDate": pub_date,
+                      "source": source,
+                      "category": category,
+                      "_sortDate": parsed_date
+                  })
+
+          # Most recent first, across all categories combined
+          all_items.sort(key=lambda x: x["_sortDate"], reverse=True)
+          for item in all_items:
+              del item["_sortDate"]
+
+          final_items = all_items[:10]
 
           output = {
               "updatedAt": datetime.now(timezone.utc).isoformat(),
-              "items": items
+              "items": final_items
           }
+
+          # If this run genuinely found nothing across every query (rare, but possible on
+          # a quiet news day), keep the previous file's items rather than wiping the list
+          # to empty — stale-but-real news beats an empty screen.
+          if not final_items:
+              try:
+                  with open('news-data.json', 'r', encoding='utf-8') as f:
+                      previous = json.load(f)
+                  if previous.get('items'):
+                      output['items'] = previous['items']
+                      output['staleFallback'] = True
+              except (FileNotFoundError, json.JSONDecodeError):
+                  pass
 
           with open('news-data.json', 'w', encoding='utf-8') as f:
               json.dump(output, f, ensure_ascii=False, indent=2)
 
-          print(f"Wrote {len(items)} news items")
+          print(f"Wrote {len(output['items'])} news items")
           PYEOF
 
       - name: Commit and push if changed
@@ -65,5 +134,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add news-data.json
-          git diff --quiet --cached || git commit -m "Update Synnex news data [automated]"
+          git diff --quiet --cached || git commit -m "Update Synnex CFO news digest [automated]"
           git push
