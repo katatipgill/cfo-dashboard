@@ -1,0 +1,69 @@
+name: Update Synnex News
+
+# Runs on a schedule (server-side, inside GitHub's own infrastructure —
+# not the browser, so there is no CORS restriction here at all) and can
+# also be triggered manually from the Actions tab.
+on:
+  schedule:
+    - cron: '0 1,7 * * *'   # 08:00 and 14:00 ICT (UTC+7) — twice a day
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch Synnex news from Google News RSS
+        run: |
+          QUERY='(Synnex Thailand OR SYNEX SET OR "บริษัท ซินเน็ค") when:14d'
+          ENCODED_QUERY=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$QUERY")
+          RSS_URL="https://news.google.com/rss/search?q=${ENCODED_QUERY}&hl=th&gl=TH&ceid=TH:th"
+
+          # Fetch raw RSS as XML, then convert to a small JSON file the dashboard can read directly.
+          curl -sf -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "$RSS_URL" -o /tmp/news.xml
+
+          python3 << 'PYEOF'
+          import xml.etree.ElementTree as ET
+          import json
+          from datetime import datetime, timezone
+
+          tree = ET.parse('/tmp/news.xml')
+          root = tree.getroot()
+
+          items = []
+          for item in root.findall('./channel/item')[:8]:
+              title = item.findtext('title') or 'ไม่มีชื่อข่าว'
+              link = item.findtext('link') or '#'
+              pub_date = item.findtext('pubDate') or ''
+              source_el = item.find('source')
+              source = source_el.text if source_el is not None else ''
+              items.append({
+                  "title": title,
+                  "link": link,
+                  "pubDate": pub_date,
+                  "source": source
+              })
+
+          output = {
+              "updatedAt": datetime.now(timezone.utc).isoformat(),
+              "items": items
+          }
+
+          with open('news-data.json', 'w', encoding='utf-8') as f:
+              json.dump(output, f, ensure_ascii=False, indent=2)
+
+          print(f"Wrote {len(items)} news items")
+          PYEOF
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add news-data.json
+          git diff --quiet --cached || git commit -m "Update Synnex news data [automated]"
+          git push
