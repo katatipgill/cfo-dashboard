@@ -54,6 +54,20 @@ jobs:
 
           CATEGORY_LABELS = ["เศรษฐกิจไทย", "ตลาดโลก", "อัตราแลกเปลี่ยน", "เทคโนโลยี/AI"]
 
+          # Gambling/spam SEO sites frequently piggyback on finance/exchange-rate
+          # searches (a well-known Google News RSS issue). Filter out anything whose
+          # title OR link contains these terms before it's ever added to the list.
+          BLOCKED_KEYWORDS = [
+              "สล็อต", "บาคาร่า", "คาสิโน", "แทงบอล", "หวยออนไลน์", "พนันออนไลน์",
+              "เดิมพัน", "ทางเข้า", "เว็บตรง", "เว็บพนัน", "ยูฟ่าเบท",
+              "ufabet", "sbobet", "sbo", "pg slot", "pgslot", "joker123",
+              "betflik", "ambbet", "เกมยิงปลา", "รูเล็ต", "บอลออนไลน์",
+          ]
+
+          def is_blocked(title, link):
+              text = (title + " " + link).lower()
+              return any(keyword.lower() in text for keyword in BLOCKED_KEYWORDS)
+
           seen_links = set()
           all_items = []
 
@@ -70,9 +84,14 @@ jobs:
                   link = item.findtext('link') or ''
                   if not link or link in seen_links:
                       continue  # de-duplicate the same story appearing in multiple queries
-                  seen_links.add(link)
 
                   title = item.findtext('title') or 'ไม่มีชื่อข่าว'
+
+                  if is_blocked(title, link):
+                      continue  # skip gambling/spam SEO content
+
+                  seen_links.add(link)
+
                   pub_date = item.findtext('pubDate') or ''
                   source_el = item.find('source')
                   source = source_el.text if source_el is not None else ''
@@ -96,7 +115,39 @@ jobs:
           for item in all_items:
               del item["_sortDate"]
 
-          final_items = all_items[:14]
+          # Guarantee representation from every category instead of a pure global
+          # recency sort-then-truncate, which could silently starve a whole category
+          # if its items happen to be a few hours older than a flood of items from
+          # other categories on a given run (e.g. finance news publishing more
+          # frequently than IT/AI news on any given day).
+          MIN_PER_CATEGORY = 3
+          MAX_TOTAL = 14
+
+          guaranteed = []
+          seen_in_guaranteed = set()
+          for label in CATEGORY_LABELS:
+              count = 0
+              for item in all_items:
+                  if item["category"] == label and item["link"] not in seen_in_guaranteed:
+                      guaranteed.append(item)
+                      seen_in_guaranteed.add(item["link"])
+                      count += 1
+                      if count >= MIN_PER_CATEGORY:
+                          break
+
+          remaining_slots = MAX_TOTAL - len(guaranteed)
+          fillers = [item for item in all_items if item["link"] not in seen_in_guaranteed][:max(remaining_slots, 0)]
+
+          final_items = guaranteed + fillers
+          # Re-sort the combined set by recency so the final display order still
+          # reads newest-first, rather than grouped by category.
+          # (pubDate strings are RFC 2822 format; re-parse for sorting)
+          def _sort_key(item):
+              try:
+                  return parsedate_to_datetime(item["pubDate"])
+              except (ValueError, TypeError):
+                  return datetime.min.replace(tzinfo=timezone.utc)
+          final_items.sort(key=_sort_key, reverse=True)
 
           output = {
               "updatedAt": datetime.now(timezone.utc).isoformat(),
