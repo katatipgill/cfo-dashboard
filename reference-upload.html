@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ไฟล์ตัวอย่างอ้างอิง — Synnex Thailand</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="ไฟล์ตัวอย่างอ้างอิง">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F5F5F7;
+  --surface:#FFFFFF;
+  --card-fill:#FAFAFA;
+  --card-border:#D8D8D8;
+  --card-border-lg:#D0D0D0;
+  --text-primary:#111111;
+  --text-label:#4A4A4A;
+  --text-faint:#8A8A8A;
+  --green:#0F7A4B;
+  --green-bg:#E5F5EC;
+  --red:#B23A2E;
+  --red-bg:#FBEAE8;
+  --amber:#B4790F;
+  --amber-bg:#FBF1E1;
+  --radius-lg:20px;
+  --radius-sm:16px;
+  --radius-pill:20px;
+  --font-en:'Inter',sans-serif;
+  --font-th:'IBM Plex Sans Thai','Inter',sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0B1020;
+  --surface:#151C2E;
+  --card-fill:#1E293B;
+  --card-border:#334155;
+  --card-border-lg:#475569;
+  --text-primary:#F8FAFC;
+  --text-label:#CBD5E1;
+  --text-faint:#94A3B8;
+  --green:#4ADE80;
+  --green-bg:#0B3B2A;
+  --red:#FB7185;
+  --red-bg:#3B1824;
+  --amber:#FBBF24;
+  --amber-bg:#3B2E0B;
+}
+[data-theme="dark"] .topbar{background:rgba(11,16,32,0.94);border-bottom-color:#334155;}
+[data-theme="dark"] .nav-link:hover{background:#1E293B;color:var(--text-primary);}
+[data-theme="dark"] .theme-toggle-btn{background:#1E293B;border-color:#475569;color:var(--text-primary);}
+[data-theme="dark"] .theme-toggle-btn:hover{background:#334155;}
+[data-theme="dark"] .dropzone{background:#111827;}
+[data-theme="dark"] .ref-item{background:#1E293B;}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);color:var(--text-primary);font-family:var(--font-th);
+  line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:80px;
+  transition:background 0.2s ease,color 0.2s ease;
+}
+a{color:var(--text-primary);text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+
+.topbar{
+  border-bottom:1.5px solid var(--card-border-lg);padding:16px 28px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  position:sticky;top:0;background:rgba(245,245,247,0.95);backdrop-filter:blur(8px);z-index:100;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--text-primary);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-en);
+  font-weight:800;color:var(--surface);font-size:14px;flex-shrink:0;}
+.brand-text h1{font-size:15px;font-weight:700;font-family:var(--font-en);}
+.brand-text p{font-size:11.5px;color:var(--text-label);}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+.nav-link{font-size:13px;font-weight:500;color:var(--text-label);padding:8px 14px;border-radius:var(--radius-pill);}
+.nav-link:hover{background:var(--card-fill);color:var(--text-primary);}
+.nav-link.active{background:var(--text-primary);color:var(--surface);}
+[data-theme="dark"] .nav-link.active{background:var(--green);color:#0B1020;}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+  border-radius:50%;background:var(--card-fill);border:1.5px solid var(--card-border);
+  font-size:16px;margin-left:6px;flex-shrink:0;transition:background 0.2s ease,transform 0.15s ease;}
+.theme-toggle-btn:hover{background:var(--card-border);}
+.theme-toggle-btn:active{transform:scale(0.9);}
+
+.wrap{max-width:720px;margin:0 auto;padding:40px 24px;}
+
+.page-head{margin-bottom:28px;}
+.page-head .eyebrow{
+  font-family:var(--font-en);font-size:11.5px;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;display:block;
+}
+.page-head h2{font-size:26px;font-weight:700;margin-bottom:6px;}
+.page-head p{font-size:13.5px;color:var(--text-label);max-width:56ch;}
+
+.card{background:var(--surface);border:1.5px solid var(--card-border);border-radius:var(--radius-lg);padding:1.75rem;}
+.card + .card{margin-top:20px;}
+
+.field{margin-bottom:20px;}
+.field:last-child{margin-bottom:0;}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--text-label);margin-bottom:8px;}
+.field select{
+  width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--card-border);
+  background:var(--card-fill);color:var(--text-primary);font-family:inherit;font-size:14px;
+}
+
+.dropzone{
+  border:1.5px dashed var(--card-border-lg);border-radius:var(--radius-sm);
+  background:var(--card-fill);padding:32px 20px;text-align:center;cursor:pointer;
+  transition:border-color 0.15s ease,background 0.15s ease;
+}
+.dropzone.dragover{border-color:var(--green);background:var(--green-bg);}
+.dropzone.has-file{border-style:solid;border-color:var(--green);}
+.dropzone-icon{font-size:26px;margin-bottom:10px;}
+.dropzone-title{font-size:13.5px;font-weight:600;color:var(--text-label);margin-bottom:4px;}
+.dropzone-sub{font-size:11.5px;color:var(--text-faint);}
+input[type="file"]{display:none;}
+
+.upload-btn{
+  width:100%;padding:14px;border-radius:var(--radius-pill);border:none;
+  background:var(--text-primary);color:var(--surface);font-size:14.5px;font-weight:700;
+  margin-top:20px;transition:opacity 0.15s ease;
+}
+.upload-btn:hover{opacity:0.88;}
+.upload-btn:disabled{opacity:0.45;cursor:not-allowed;}
+
+.section-title{font-size:13px;font-weight:700;color:var(--text-label);margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;}
+.ref-item{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;margin-bottom:8px;
+  background:var(--card-fill);border:1.5px solid var(--card-border);border-radius:var(--radius-sm);
+}
+.ref-item .name{font-size:13px;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ref-item .meta{font-size:11px;color:var(--text-faint);white-space:nowrap;}
+.ref-item .del-btn{font-size:11px;font-weight:600;color:var(--red);background:none;border:1px solid var(--card-border-lg);
+  border-radius:8px;padding:5px 9px;}
+.ref-item .del-btn:hover{background:var(--red-bg);}
+.empty-note{font-size:12.5px;color:var(--text-faint);text-align:center;padding:20px;}
+
+.status-msg{display:none;margin-top:14px;padding:12px 16px;border-radius:var(--radius-sm);font-size:12.5px;}
+.status-msg.show{display:block;}
+.status-msg.ok{background:var(--green-bg);color:var(--green);}
+.status-msg.err{background:var(--red-bg);color:var(--red);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div class="brand-text">
+      <h1>Synnex Thailand</h1>
+      <p>ไฟล์ตัวอย่างอ้างอิง (Admin)</p>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Dashboard</a>
+    <a class="nav-link" href="task-board.html">บอร์ดงาน</a>
+    <a class="nav-link" href="submit-task.html">ส่งงาน</a>
+    <a class="nav-link active" href="reference-upload.html">ตัวอย่างอ้างอิง</a>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="สลับธีมสว่าง/มืด">🌙</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="page-head">
+    <span class="eyebrow">Admin · Reference Files</span>
+    <h2>ไฟล์ตัวอย่างอ้างอิง</h2>
+    <p>อัพโหลดไฟล์งานที่ถูกต้องไว้เป็นตัวอย่าง ให้ AI ใช้เทียบตอนพนักงานส่งงานจริง ถ้ายังไม่มีไฟล์เลย ระบบจะข้ามการตรวจ AI ไปก่อนแบบ pass อัตโนมัติ</p>
+  </div>
+
+  <div class="card">
+    <div class="field">
+      <label for="taskType">ประเภทงาน</label>
+      <!-- TODO: เพิ่มตัวเลือกงานประเภทอื่นตอนขยายระบบ ให้ตรงกับ submit-task.html -->
+      <select id="taskType">
+        <option value="task-1">[ระบุชื่องาน เช่น กระทบยอดธนาคารประจำเดือน]</option>
+      </select>
+    </div>
+
+    <div class="dropzone" id="dropzone">
+      <div class="dropzone-icon">📎</div>
+      <div class="dropzone-title" id="dzTitle">ลากไฟล์ตัวอย่างมาวาง หรือคลิกเพื่อเลือก</div>
+      <div class="dropzone-sub">รองรับ Excel, PDF, รูปภาพ</div>
+    </div>
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.pdf,.png,.jpg,.jpeg">
+
+    <button type="button" class="upload-btn" id="uploadBtn" disabled>อัพโหลดเป็นไฟล์อ้างอิง</button>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">
+      <span>ไฟล์อ้างอิงปัจจุบัน</span>
+      <span id="refCount"></span>
+    </div>
+    <div id="refList"></div>
+  </div>
+
+</div>
+
+<script>
+// ===================================================================
+// MOCK_MODE: true = ใช้ข้อมูลจำลองในหน่วยความจำ (ยังไม่ต่อ Worker จริง)
+// เปลี่ยนเป็น false และใส่ API_ENDPOINT จริง หลัง deploy Worker แล้ว
+// ===================================================================
+const MOCK_MODE = false;
+const API_ENDPOINT = "https://task-board-worker.accountingsynnex.workers.dev";
+
+let mockRefs = [
+  {key:'references/task-1/1720000000000-ตัวอย่าง_กระทบยอด.xlsx', name:'ตัวอย่าง_กระทบยอด.xlsx', uploaded:'2026-07-01T03:00:00Z', size:24576},
+];
+
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  themeToggle.textContent = t === 'dark' ? '☀️' : '🌙';
+}
+applyTheme(localStorage.getItem('theme') || 'light');
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+});
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const dzTitle = document.getElementById('dzTitle');
+const uploadBtn = document.getElementById('uploadBtn');
+const taskTypeSelect = document.getElementById('taskType');
+const statusMsg = document.getElementById('statusMsg');
+let selectedFile = null;
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('dragover');
+  if(e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', () => { if(fileInput.files[0]) setFile(fileInput.files[0]); });
+
+function setFile(f){
+  selectedFile = f;
+  dropzone.classList.add('has-file');
+  dzTitle.textContent = '📄 ' + f.name;
+  uploadBtn.disabled = false;
+}
+
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function formatBytes(n){
+  if(n < 1024) return n + ' B';
+  if(n < 1024*1024) return (n/1024).toFixed(1) + ' KB';
+  return (n/1024/1024).toFixed(1) + ' MB';
+}
+function formatDate(iso){
+  return new Date(iso).toLocaleString('th-TH', {dateStyle:'medium', timeStyle:'short'});
+}
+
+async function loadReferences(){
+  const taskType = taskTypeSelect.value;
+  let refs;
+  if(MOCK_MODE){
+    refs = mockRefs.filter(r => r.key.includes(`references/${taskType}/`));
+  }else{
+    const res = await fetch(`${API_ENDPOINT}/references?taskType=${encodeURIComponent(taskType)}`);
+    refs = await res.json();
+  }
+  document.getElementById('refCount').textContent = refs.length + ' ไฟล์';
+  const list = document.getElementById('refList');
+  if(refs.length === 0){
+    list.innerHTML = `<div class="empty-note">ยังไม่มีไฟล์อ้างอิงสำหรับงานนี้ — AI จะข้ามการตรวจไปก่อนแบบ pass อัตโนมัติ</div>`;
+    return;
+  }
+  list.innerHTML = refs.map(r => `
+    <div class="ref-item">
+      📄 <span class="name">${escapeHtml(r.name)}</span>
+      <span class="meta">${formatBytes(r.size)} · ${formatDate(r.uploaded)}</span>
+      <button type="button" class="del-btn" data-key="${escapeHtml(r.key)}">ลบ</button>
+    </div>
+  `).join('');
+  list.querySelectorAll('.del-btn').forEach(btn => {
+    btn.addEventListener('click', () => deleteReference(btn.dataset.key));
+  });
+}
+
+async function deleteReference(key){
+  if(!confirm('ลบไฟล์อ้างอิงนี้?')) return;
+  if(MOCK_MODE){
+    mockRefs = mockRefs.filter(r => r.key !== key);
+  }else{
+    await fetch(`${API_ENDPOINT}/references?key=${encodeURIComponent(key)}`, {method:'DELETE'});
+  }
+  loadReferences();
+}
+
+uploadBtn.addEventListener('click', async () => {
+  if(!selectedFile) return;
+  uploadBtn.disabled = true;
+  statusMsg.className = 'status-msg';
+  try{
+    if(MOCK_MODE){
+      await new Promise(r => setTimeout(r, 600));
+      mockRefs.push({
+        key:`references/${taskTypeSelect.value}/${Date.now()}-${selectedFile.name}`,
+        name:selectedFile.name, uploaded:new Date().toISOString(), size:selectedFile.size
+      });
+    }else{
+      const fd = new FormData();
+      fd.append('taskType', taskTypeSelect.value);
+      fd.append('file', selectedFile);
+      const res = await fetch(`${API_ENDPOINT}/references`, {method:'POST', body: fd});
+      if(!res.ok) throw new Error('upload failed');
+    }
+    statusMsg.textContent = 'อัพโหลดสำเร็จ ✓';
+    statusMsg.classList.add('show','ok');
+    selectedFile = null; fileInput.value = '';
+    dropzone.classList.remove('has-file');
+    dzTitle.textContent = 'ลากไฟล์ตัวอย่างมาวาง หรือคลิกเพื่อเลือก';
+    loadReferences();
+  }catch(err){
+    statusMsg.textContent = 'อัพโหลดไม่สำเร็จ ลองใหม่อีกครั้ง';
+    statusMsg.classList.add('show','err');
+  }
+  uploadBtn.disabled = true;
+});
+
+taskTypeSelect.addEventListener('change', loadReferences);
+loadReferences();
+</script>
+</body>
+</html>

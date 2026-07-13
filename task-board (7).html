@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บอร์ดงานบัญชี — Synnex Thailand</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="บอร์ดงานบัญชี">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F5F5F7;
+  --surface:#FFFFFF;
+  --card-fill:#FAFAFA;
+  --card-border:#D8D8D8;
+  --card-border-lg:#D0D0D0;
+  --text-primary:#111111;
+  --text-label:#4A4A4A;
+  --text-faint:#8A8A8A;
+  --green:#0F7A4B;
+  --green-bg:#E5F5EC;
+  --red:#B23A2E;
+  --red-bg:#FBEAE8;
+  --amber:#B4790F;
+  --amber-bg:#FBF1E1;
+  --slate:#4A5568;
+  --slate-bg:#EAECEF;
+  --radius-lg:20px;
+  --radius-sm:16px;
+  --radius-pill:20px;
+  --font-en:'Inter',sans-serif;
+  --font-th:'IBM Plex Sans Thai','Inter',sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0B1020;
+  --surface:#151C2E;
+  --card-fill:#1E293B;
+  --card-border:#334155;
+  --card-border-lg:#475569;
+  --text-primary:#F8FAFC;
+  --text-label:#CBD5E1;
+  --text-faint:#94A3B8;
+  --green:#4ADE80;
+  --green-bg:#0B3B2A;
+  --red:#FB7185;
+  --red-bg:#3B1824;
+  --amber:#FBBF24;
+  --amber-bg:#3B2E0B;
+  --slate:#94A3B8;
+  --slate-bg:#1E293B;
+}
+[data-theme="dark"] .topbar{background:rgba(11,16,32,0.94);border-bottom-color:#334155;}
+[data-theme="dark"] .nav-link:hover{background:#1E293B;color:var(--text-primary);}
+[data-theme="dark"] .theme-toggle-btn{background:#1E293B;border-color:#475569;color:var(--text-primary);}
+[data-theme="dark"] .theme-toggle-btn:hover{background:#334155;}
+[data-theme="dark"] .modal{background:#151C2E;}
+[data-theme="dark"] .task-card{background:#1E293B;}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);color:var(--text-primary);font-family:var(--font-th);
+  line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:60px;
+  transition:background 0.2s ease,color 0.2s ease;
+}
+a{color:var(--text-primary);text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+
+.topbar{
+  border-bottom:1.5px solid var(--card-border-lg);padding:16px 28px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  position:sticky;top:0;background:rgba(245,245,247,0.95);backdrop-filter:blur(8px);z-index:100;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--text-primary);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-en);
+  font-weight:800;color:var(--surface);font-size:14px;flex-shrink:0;}
+.brand-text h1{font-size:15px;font-weight:700;font-family:var(--font-en);}
+.brand-text p{font-size:11.5px;color:var(--text-label);}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}
+.nav-link{font-size:13px;font-weight:500;color:var(--text-label);padding:8px 14px;border-radius:var(--radius-pill);}
+.nav-link:hover{background:var(--card-fill);color:var(--text-primary);}
+.nav-link.active{background:var(--text-primary);color:var(--surface);}
+[data-theme="dark"] .nav-link.active{background:var(--green);color:#0B1020;}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+  border-radius:50%;background:var(--card-fill);border:1.5px solid var(--card-border);
+  font-size:16px;margin-left:6px;flex-shrink:0;transition:background 0.2s ease,transform 0.15s ease;}
+.theme-toggle-btn:hover{background:var(--card-border);}
+.theme-toggle-btn:active{transform:scale(0.9);}
+
+.wrap{max-width:1500px;margin:0 auto;padding:28px 28px 0;}
+
+.board-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px;margin-bottom:20px;}
+.board-head .eyebrow{font-family:var(--font-en);font-size:11.5px;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;display:block;}
+.board-head h2{font-size:24px;font-weight:700;}
+.assign-btn{
+  padding:11px 20px;border-radius:var(--radius-pill);border:none;background:var(--text-primary);
+  color:var(--surface);font-size:13.5px;font-weight:700;white-space:nowrap;
+}
+.assign-btn:hover{opacity:0.88;}
+
+.board{
+  display:grid;grid-template-columns:repeat(5,minmax(230px,1fr));gap:14px;
+  overflow-x:auto;padding-bottom:24px;align-items:start;
+}
+@media (max-width:1200px){
+  .board{grid-template-columns:repeat(5,78vw);}
+}
+.column{background:var(--card-fill);border:1.5px solid var(--card-border);border-radius:var(--radius-lg);
+  padding:14px;min-height:220px;transition:background 0.12s ease,border-color 0.12s ease;}
+.column.dragover-ok{border-color:var(--green);background:var(--green-bg);}
+.column.dragover-no{border-color:var(--red);background:var(--red-bg);}
+.column-head{display:flex;align-items:center;justify-content:space-between;padding:6px 6px 12px;}
+.column-title{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot.assigned{background:var(--slate);}
+.dot.in-process{background:var(--amber);}
+.dot.under-review{background:#4A6FA5;}
+.dot.revision{background:var(--red);}
+.dot.complete{background:var(--green);}
+.column-count{font-size:11.5px;font-weight:700;color:var(--text-faint);background:var(--surface);
+  border:1px solid var(--card-border);border-radius:var(--radius-pill);padding:2px 9px;}
+
+.task-card{
+  background:var(--surface);border:1.5px solid var(--card-border);border-radius:var(--radius-sm);
+  padding:14px;margin-bottom:10px;cursor:grab;
+}
+.task-card.locked{cursor:default;}
+.task-card:active{cursor:grabbing;}
+.task-card.dragging{opacity:0.4;}
+.task-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.task-name{font-size:13.5px;font-weight:700;line-height:1.3;}
+.avatar{width:26px;height:26px;border-radius:50%;background:var(--slate-bg);color:var(--slate);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;
+  font-family:var(--font-en);}
+.task-employee{font-size:12px;color:var(--text-label);margin-bottom:8px;}
+.task-meta-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
+.due-badge{font-size:11px;font-weight:600;color:var(--text-faint);}
+.due-badge.overdue{color:var(--red);font-weight:700;}
+.status-pill{font-size:10px;font-weight:700;padding:3px 8px;border-radius:var(--radius-pill);white-space:nowrap;}
+.status-pill.assigned{background:var(--slate-bg);color:var(--slate);}
+.status-pill.in-process{background:var(--amber-bg);color:var(--amber);}
+.status-pill.under-review{background:#E4ECF7;color:#4A6FA5;}
+[data-theme="dark"] .status-pill.under-review{background:#1E2C42;color:#8FB4E8;}
+.status-pill.revision{background:var(--red-bg);color:var(--red);}
+.status-pill.complete{background:var(--green-bg);color:var(--green);}
+.ai-note{font-size:11.5px;color:var(--text-label);margin-top:8px;padding-top:8px;border-top:1px dashed var(--card-border);}
+.reviewer-note{font-size:11.5px;color:var(--red);margin-top:6px;}
+.attachment-btn{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:var(--text-label);
+  border:1px solid var(--card-border-lg);border-radius:10px;padding:5px 9px;background:transparent;}
+.attachment-btn:hover{background:var(--surface);}
+.review-actions{display:flex;gap:6px;margin-top:10px;}
+.review-btn{flex:1;font-size:11px;font-weight:700;padding:7px 4px;border-radius:10px;border:none;}
+.review-btn.approve{background:var(--green-bg);color:var(--green);}
+.review-btn.reject{background:var(--red-bg);color:var(--red);}
+.review-btn:hover{opacity:0.8;}
+.waiting-note{font-size:11px;color:var(--text-faint);margin-top:8px;font-style:italic;}
+
+.empty-col{padding:24px 8px;text-align:center;color:var(--text-faint);font-size:12px;}
+
+.overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;
+  align-items:center;justify-content:center;padding:20px;
+}
+.overlay.show{display:flex;}
+.modal{
+  background:var(--surface);border-radius:var(--radius-lg);padding:1.75rem;width:100%;max-width:440px;
+  border:1.5px solid var(--card-border);max-height:88vh;overflow-y:auto;
+}
+.modal h3{font-size:16px;font-weight:700;margin-bottom:6px;}
+.modal .sub{font-size:12.5px;color:var(--text-faint);margin-bottom:16px;}
+.mfield{margin-bottom:16px;}
+.mfield label{display:block;font-size:12.5px;font-weight:600;color:var(--text-label);margin-bottom:7px;}
+.mfield input,.mfield select,.mfield textarea{
+  width:100%;padding:11px 13px;border-radius:var(--radius-sm);border:1.5px solid var(--card-border);
+  background:var(--card-fill);color:var(--text-primary);font-family:inherit;font-size:13.5px;
+}
+.mfield textarea{resize:vertical;min-height:70px;}
+.modal-btns{display:flex;gap:10px;margin-top:6px;}
+.modal-btn{flex:1;padding:11px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;border:none;}
+.modal-btn.cancel{background:var(--card-fill);color:var(--text-primary);border:1.5px solid var(--card-border-lg);}
+.modal-btn.confirm{background:var(--text-primary);color:var(--surface);}
+.modal-btn:hover{opacity:0.9;}
+
+.dropzone-mini{
+  border:1.5px dashed var(--card-border-lg);border-radius:var(--radius-sm);
+  background:var(--card-fill);padding:22px 16px;text-align:center;cursor:pointer;margin-bottom:16px;
+}
+.dropzone-mini.has-file{border-style:solid;border-color:var(--green);}
+.dropzone-mini .dz-icon{font-size:22px;margin-bottom:6px;}
+.dropzone-mini .dz-text{font-size:12.5px;color:var(--text-label);}
+input[type="file"]{display:none;}
+
+.checking-box{display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 10px;text-align:center;}
+.spinner{width:30px;height:30px;border-radius:50%;border:3px solid var(--card-border);
+  border-top-color:var(--green);animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.note-banner{
+  font-size:11.5px;color:var(--text-faint);background:var(--card-fill);border:1px dashed var(--card-border-lg);
+  border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:20px;
+}.detail-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--card-border);font-size:13px;}
+.detail-row:last-child{border-bottom:none;}
+.detail-row .k{color:var(--text-faint);flex-shrink:0;}
+.detail-row .v{color:var(--text-primary);font-weight:600;text-align:right;}
+.detail-files{margin-top:14px;}
+.detail-files .label{font-size:12px;font-weight:600;color:var(--text-label);margin-bottom:8px;}
+.detail-file-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px solid var(--card-border);
+  border-radius:var(--radius-sm);background:var(--card-fill);margin-bottom:8px;font-size:12.5px;}
+.detail-file-item button{margin-left:auto;font-size:11px;font-weight:600;color:var(--text-label);
+  background:none;border:1px solid var(--card-border-lg);border-radius:8px;padding:4px 8px;}
+.detail-note{margin-top:14px;padding:12px 14px;border-radius:var(--radius-sm);background:var(--card-fill);
+  border:1px dashed var(--card-border-lg);font-size:12.5px;color:var(--text-label);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div class="brand-text">
+      <h1>Synnex Thailand</h1>
+      <p>บอร์ดงานบัญชี</p>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Dashboard</a>
+    <a class="nav-link active" href="task-board.html">บอร์ดงาน</a>
+    <a class="nav-link" href="submit-task.html">ส่งงาน</a>
+    <a class="nav-link" href="reference-upload.html">ตัวอย่างอ้างอิง</a>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="สลับธีมสว่าง/มืด">🌙</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="note-banner">
+    🧪 พรีวิว UI — ลากการ์ดเพื่อเปลี่ยนสถานะได้ตามกติกาจริง (assigned → in process → under review → complete/revision)
+    ตอนนี้การตรวจของ AI เป็น mock สุ่มผล และข้อมูลอยู่ใน memory หน้าเว็บเท่านั้น เมื่อต่อ Worker จริงจะบันทึกถาวรและแจ้งเตือนผ่าน LINE ได้
+  </div>
+
+  <div class="board-head">
+    <div>
+      <span class="eyebrow">Task Board · AI + Human verified</span>
+      <h2>ภาพรวมงานทั้งหมด</h2>
+    </div>
+    <button class="assign-btn" id="openAssign">+ มอบหมายงาน</button>
+  </div>
+
+  <div class="board" id="board">
+    <div class="column" data-status="assigned">
+      <div class="column-head">
+        <div class="column-title"><span class="dot assigned"></span>Job Assigned</div>
+        <span class="column-count">0</span>
+      </div>
+      <div class="column-body"></div>
+    </div>
+    <div class="column" data-status="in-process">
+      <div class="column-head">
+        <div class="column-title"><span class="dot in-process"></span>In Process</div>
+        <span class="column-count">0</span>
+      </div>
+      <div class="column-body"></div>
+    </div>
+    <div class="column" data-status="under-review">
+      <div class="column-head">
+        <div class="column-title"><span class="dot under-review"></span>Under Review</div>
+        <span class="column-count">0</span>
+      </div>
+      <div class="column-body"></div>
+    </div>
+    <div class="column" data-status="revision">
+      <div class="column-head">
+        <div class="column-title"><span class="dot revision"></span>Revision</div>
+        <span class="column-count">0</span>
+      </div>
+      <div class="column-body"></div>
+    </div>
+    <div class="column" data-status="complete">
+      <div class="column-head">
+        <div class="column-title"><span class="dot complete"></span>Complete</div>
+        <span class="column-count">0</span>
+      </div>
+      <div class="column-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Assign modal -->
+<div class="overlay" id="assignOverlay">
+  <div class="modal">
+    <h3>มอบหมายงาน</h3>
+    <p class="sub">สร้างการ์ดใหม่เข้า Job Assigned</p>
+    <form id="assignForm">
+      <div class="mfield">
+        <label for="mEmployee">พนักงาน</label>
+        <input type="text" id="mEmployee" placeholder="เช่น กิ่ง" required>
+      </div>
+      <div class="mfield">
+        <label for="mTask">ชื่องาน</label>
+        <input type="text" id="mTask" placeholder="เช่น กระทบยอดธนาคาร ก.ค. 69" required>
+      </div>
+      <div class="mfield">
+        <label for="mDue">กำหนดส่ง</label>
+        <input type="date" id="mDue" required>
+      </div>
+      <div class="mfield">
+        <label for="mAttachment">ไฟล์แนบให้พนักงาน (ถ้ามี)</label>
+        <input type="text" id="mAttachment" placeholder="เช่น แบบฟอร์ม_กระทบยอด.xlsx (ใส่ชื่อไฟล์ไว้ก่อน)">
+      </div>
+      <div class="modal-btns">
+        <button type="button" class="modal-btn cancel" data-close="assignOverlay">ยกเลิก</button>
+        <button type="submit" class="modal-btn confirm">มอบหมาย</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Submit-for-review modal (triggered by dragging a card into Under Review) -->
+<div class="overlay" id="submitOverlay">
+  <div class="modal">
+    <h3>ส่งงานให้ AI ตรวจ</h3>
+    <p class="sub" id="submitSub"></p>
+    <div id="submitBody">
+      <div class="dropzone-mini" id="reviewDropzone">
+        <div class="dz-icon">📎</div>
+        <div class="dz-text" id="reviewDzText">ลากไฟล์มาวาง หรือคลิกเพื่อเลือก</div>
+      </div>
+      <input type="file" id="reviewFileInput" accept=".xlsx,.xls,.csv,.pdf,.png,.jpg,.jpeg">
+      <div class="modal-btns">
+        <button type="button" class="modal-btn cancel" id="cancelSubmitReview">ยกเลิก (ยังไม่พร้อม)</button>
+        <button type="button" class="modal-btn confirm" id="confirmSubmitReview" disabled>ส่งให้ AI ตรวจ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Human reviewer reject-reason modal -->
+<div class="overlay" id="rejectOverlay">
+  <div class="modal">
+    <h3>ตีกลับงาน</h3>
+    <p class="sub">ระบุเหตุผลให้พนักงานรู้ว่าต้องแก้อะไร</p>
+    <form id="rejectForm">
+      <div class="mfield">
+        <label for="rejectReason">เหตุผล</label>
+        <textarea id="rejectReason" placeholder="เช่น ยอดในชีทไม่ตรงกับใบแจ้งยอดธนาคาร" required></textarea>
+      </div>
+      <div class="modal-btns">
+        <button type="button" class="modal-btn cancel" data-close="rejectOverlay">ยกเลิก</button>
+        <button type="submit" class="modal-btn confirm">ยืนยันตีกลับ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Task detail modal (opens when a card is clicked) -->
+<div class="overlay" id="detailOverlay">
+  <div class="modal">
+    <h3 id="detailTitle"></h3>
+    <p class="sub" id="detailSub"></p>
+    <div id="detailBody"></div>
+    <div class="modal-btns">
+      <button type="button" class="modal-btn cancel" data-close="detailOverlay">ปิด</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================================================================
+// MOCK DATA + STATE MACHINE
+// สถานะ: assigned -> in-process -> under-review -> complete
+//                                        \-> revision -> (in-process หรือ under-review อีกครั้ง)
+//
+// MOCK_MODE: true = ใช้ tasks[] จำลองในหน่วยความจำ (ยังไม่ต่อ Worker จริง)
+// เปลี่ยนเป็น false และใส่ API_ENDPOINT จริง หลัง deploy Worker แล้ว —
+// ทุกจุดด้านล่างเขียนรองรับทั้งสองโหมดไว้แล้ว ไม่ต้องแก้ logic เพิ่ม
+// ==================================================================
+const MOCK_MODE = false;
+const API_ENDPOINT = "https://task-board-worker.accountingsynnex.workers.dev";
+
+let tasks = [
+  {id:1, employee:'กิ่ง', task:'กระทบยอดธนาคาร มิ.ย. 69', due:'2026-07-05', status:'assigned', attachment:'แบบฟอร์ม_กระทบยอด.xlsx', submittedFile:'', aiNote:'', reviewerNote:'', aiChecking:false},
+  {id:2, employee:'อร', task:'ปิดบัญชีรายเดือน มิ.ย. 69', due:'2026-07-10', status:'in-process', attachment:'', submittedFile:'', aiNote:'', reviewerNote:'', aiChecking:false},
+  {id:3, employee:'บอย', task:'VAT Report มิ.ย. 69', due:'2026-07-15', status:'under-review', attachment:'', submittedFile:'VAT_Report_มิย69.pdf', aiNote:'AI ตรวจผ่านแล้ว รอหัวหน้าตรวจ', reviewerNote:'', aiChecking:false},
+  {id:4, employee:'มิ้นท์', task:'กระทบยอดธนาคาร ก.ค. 69', due:'2026-06-28', status:'revision', attachment:'', submittedFile:'กระทบยอด_กค69_draft.xlsx', aiNote:'', reviewerNote:'ยอดรวมท้ายชีทไม่ตรงกับใบแจ้งยอดธนาคาร กรุณาตรวจสอบใหม่', aiChecking:false},
+  {id:5, employee:'เจน', task:'ปิดบัญชีรายเดือน พ.ค. 69', due:'2026-06-05', status:'complete', attachment:'', submittedFile:'ปิดบัญชี_พค69.xlsx', aiNote:'', reviewerNote:'', aiChecking:false},
+];
+let nextId = 6;
+
+const STATUS_LABEL = {'assigned':'Assigned','in-process':'In Process','under-review':'Under Review','revision':'Revision','complete':'Complete'};
+
+async function loadTasks(){
+  if(MOCK_MODE) return;
+  try{
+    const res = await fetch(`${API_ENDPOINT}/tasks`);
+    if(!res.ok) throw new Error('load failed');
+    tasks = await res.json();
+    render();
+  }catch(err){
+    alert('โหลดรายการงานไม่สำเร็จ ลองรีเฟรชหน้าอีกครั้ง');
+  }
+}
+
+// แทนที่การ์ดในเครื่องด้วยข้อมูลล่าสุดที่ Worker ส่งกลับมา (ชนะ local state เดิมเสมอ)
+function mergeTask(updated){
+  const idx = tasks.findIndex(t => String(t.id) === String(updated.id));
+  if(idx >= 0) tasks[idx] = updated; else tasks.push(updated);
+}
+
+// เทียบ id แบบ string เสมอ เพราะ mock ใช้เลข (1,2,3) ส่วน Worker จริงคืน UUID (string)
+function findTask(id){
+  return tasks.find(t => String(t.id) === String(id));
+}
+
+function openDetail(t){
+  document.getElementById('detailTitle').textContent = t.task;
+  document.getElementById('detailSub').textContent = `${t.employee} · กำหนดส่ง ${formatDue(t.due)}`;
+
+  const files = [];
+  if(t.attachment) files.push({label:'ไฟล์แนบจากแอดมิน', name:t.attachment});
+  if(t.submittedFile) files.push({label:'ไฟล์ที่ส่งตรวจล่าสุด', name:t.submittedFile});
+
+  const filesHtml = files.length ? `
+    <div class="detail-files">
+      <div class="label">ไฟล์งาน</div>
+      ${files.map(f => `
+        <div class="detail-file-item">
+          📄 <span>${escapeHtml(f.name)}</span>
+          <button type="button" data-download="${escapeHtml(f.name)}">ดาวน์โหลด</button>
+        </div>
+      `).join('')}
+    </div>` : `<div class="detail-files"><div class="label">ไฟล์งาน</div><p style="font-size:12.5px;color:var(--text-faint);">ยังไม่มีไฟล์แนบ</p></div>`;
+
+  const noteHtml = (t.aiNote || t.reviewerNote) ? `
+    <div class="detail-note">
+      ${t.aiNote ? '🤖 ' + escapeHtml(t.aiNote) + '<br>' : ''}
+      ${t.reviewerNote ? '🧑\u200d💼 ' + escapeHtml(t.reviewerNote) : ''}
+    </div>` : '';
+
+  document.getElementById('detailBody').innerHTML = `
+    <div class="detail-row"><span class="k">พนักงาน</span><span class="v">${escapeHtml(t.employee)}</span></div>
+    <div class="detail-row"><span class="k">สถานะ</span><span class="v">${STATUS_LABEL[t.status]}</span></div>
+    <div class="detail-row"><span class="k">กำหนดส่ง</span><span class="v">${formatDue(t.due)}${isOverdue(t) ? ' (เลยกำหนด)' : ''}</span></div>
+    ${filesHtml}
+    ${noteHtml}
+  `;
+
+  document.querySelectorAll('#detailBody [data-download]').forEach(btn => {
+    btn.addEventListener('click', () => alert('จำลองดาวน์โหลด: ' + btn.dataset.download));
+  });
+
+  openOverlay('detailOverlay');
+}
+
+function initials(name){ return name.trim().slice(0,2).toUpperCase(); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function formatDue(dateStr){
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('th-TH', {day:'numeric', month:'short'});
+}
+function isOverdue(t){
+  if(t.status === 'complete') return false;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return new Date(t.due + 'T00:00:00') < today;
+}
+
+// กติกาการลาก: ใครลากไปไหนได้บ้าง (ตรงตาม flow ที่ตกลงกัน)
+const ALLOWED_MOVES = {
+  'assigned': ['in-process'],
+  'in-process': ['under-review'],
+  'under-review': ['revision','complete'], // คนตรวจลากเองแทนกดปุ่ม
+  'revision': ['in-process', 'under-review'], // แก้แล้วกลับไปทำต่อ หรือส่งตรวจใหม่เลยก็ได้
+  'complete': [] // จบ flow
+};
+
+function render(){
+  document.querySelectorAll('.column').forEach(col => {
+    const status = col.dataset.status;
+    const body = col.querySelector('.column-body');
+    const items = tasks.filter(t => t.status === status);
+    col.querySelector('.column-count').textContent = items.length;
+
+    if(items.length === 0){
+      body.innerHTML = `<div class="empty-col">ไม่มีงานในสถานะนี้</div>`;
+      return;
+    }
+
+    body.innerHTML = items.map(t => {
+      const draggable = ALLOWED_MOVES[t.status].length > 0 && !(t.status === 'under-review' && t.aiChecking);
+      return `
+      <div class="task-card ${draggable ? '' : 'locked'}" draggable="${draggable}" data-id="${t.id}">
+        <div class="task-card-top">
+          <div class="task-name">${escapeHtml(t.task)}</div>
+          <div class="avatar">${initials(t.employee)}</div>
+        </div>
+        <div class="task-employee">${escapeHtml(t.employee)}</div>
+        <div class="task-meta-row">
+          <span class="due-badge ${isOverdue(t) ? 'overdue' : ''}">${isOverdue(t) ? 'เลยกำหนด · ' : 'กำหนดส่ง '}${formatDue(t.due)}</span>
+          <span class="status-pill ${t.status}">${STATUS_LABEL[t.status]}</span>
+        </div>
+        ${t.status === 'in-process' && t.attachment ? `<button type="button" class="attachment-btn" data-download="${escapeHtml(t.attachment)}">📎 ${escapeHtml(t.attachment)}</button>` : ''}
+        ${t.aiNote ? `<div class="ai-note">🤖 ${escapeHtml(t.aiNote)}</div>` : ''}
+        ${t.reviewerNote ? `<div class="reviewer-note">🧑‍💼 ${escapeHtml(t.reviewerNote)}</div>` : ''}
+        ${t.status === 'under-review' && !t.aiChecking ? `<div class="waiting-note">ลากไปที่ Complete หรือ Revision เพื่อสรุปผล</div>` : ''}
+      </div>`;
+    }).join('');
+  });
+
+  wireCardEvents();
+}
+
+function wireCardEvents(){
+  document.querySelectorAll('.task-card[draggable="true"]').forEach(card => {
+    card.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', card.dataset.id);
+      card.classList.add('dragging');
+    });
+    card.addEventListener('dragend', () => card.classList.remove('dragging'));
+  });
+
+  document.querySelectorAll('.task-card').forEach(card => {
+    card.addEventListener('click', e => {
+      if(e.target.closest('button')) return; // ไม่นับคลิกปุ่มย่อยในการ์ด
+      const t = findTask(card.dataset.id);
+      if(t) openDetail(t);
+    });
+  });
+
+  document.querySelectorAll('[data-download]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      alert('จำลองดาวน์โหลด: ' + btn.dataset.download);
+    });
+  });
+}
+
+// ---- Drag & drop column handling ----
+let pendingRejectId = null;
+let pendingSubmitId = null;
+
+document.querySelectorAll('.column').forEach(col => {
+  col.addEventListener('dragover', e => {
+    e.preventDefault();
+  });
+  col.addEventListener('dragenter', e => {
+    e.preventDefault();
+    const id = draggingIdFromDom();
+    const t = findTask(id);
+    if(!t) return;
+    const target = col.dataset.status;
+    const ok = ALLOWED_MOVES[t.status].includes(target) || target === t.status;
+    col.classList.add(ok ? 'dragover-ok' : 'dragover-no');
+  });
+  col.addEventListener('dragleave', () => col.classList.remove('dragover-ok','dragover-no'));
+  col.addEventListener('drop', e => {
+    e.preventDefault();
+    col.classList.remove('dragover-ok','dragover-no');
+    const id = e.dataTransfer.getData('text/plain');
+    const t = findTask(id);
+    if(!t) return;
+    const target = col.dataset.status;
+    if(target === t.status) return;
+    if(!ALLOWED_MOVES[t.status].includes(target)){
+      return; // ไม่ใช่ทางที่อนุญาต ไม่ทำอะไร
+    }
+    if(target === 'under-review'){
+      // ลากเข้ารีวิว -> เปิด popup ให้แนบไฟล์ + ให้ AI ตรวจก่อน
+      pendingSubmitId = id;
+      openSubmitModal(t);
+    }else if(t.status === 'under-review' && target === 'revision'){
+      // คนตรวจลากไป revision เอง -> ต้องระบุเหตุผลก่อนยืนยัน
+      pendingRejectId = id;
+      document.getElementById('rejectReason').value = '';
+      openOverlay('rejectOverlay');
+    }else if(t.status === 'under-review' && target === 'complete'){
+      // คนตรวจลากไป complete เอง -> อนุมัติทันที ไม่ต้องกรอกอะไรเพิ่ม
+      approveTask(t);
+    }else{
+      moveTaskDirect(t, target);
+    }
+  });
+});
+
+async function moveTaskDirect(t, target){
+  if(MOCK_MODE){
+    t.status = target;
+    render();
+    return;
+  }
+  try{
+    const res = await fetch(`${API_ENDPOINT}/tasks/${t.id}/status`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({status: target})
+    });
+    if(!res.ok) throw new Error('update failed');
+    mergeTask(await res.json());
+  }catch(err){
+    alert('ย้ายการ์ดไม่สำเร็จ ลองใหม่อีกครั้ง');
+  }
+  render();
+}
+
+async function approveTask(t){
+  if(MOCK_MODE){
+    t.status = 'complete';
+    t.aiNote = ''; t.reviewerNote = '';
+    render();
+    return;
+  }
+  try{
+    const res = await fetch(`${API_ENDPOINT}/tasks/${t.id}/review`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:'approve'})
+    });
+    if(!res.ok) throw new Error('review failed');
+    mergeTask(await res.json());
+  }catch(err){
+    alert('อนุมัติงานไม่สำเร็จ ลองใหม่อีกครั้ง');
+  }
+  render();
+}
+
+function draggingIdFromDom(){
+  const el = document.querySelector('.task-card.dragging');
+  return el ? el.dataset.id : null;
+}
+function draggingId(){ return draggingIdFromDom(); }
+
+// ---- Overlay helpers ----
+function openOverlay(id){ document.getElementById(id).classList.add('show'); }
+function closeOverlay(id){ document.getElementById(id).classList.remove('show'); }
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeOverlay(btn.dataset.close));
+});
+
+// ---- Assign modal ----
+document.getElementById('openAssign').addEventListener('click', () => openOverlay('assignOverlay'));
+document.getElementById('assignForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const payload = {
+    employee: document.getElementById('mEmployee').value.trim(),
+    task: document.getElementById('mTask').value.trim(),
+    due: document.getElementById('mDue').value,
+    attachment: document.getElementById('mAttachment').value.trim(),
+  };
+  if(MOCK_MODE){
+    tasks.push({
+      id: nextId++, ...payload, status: 'assigned',
+      submittedFile: '', aiNote: '', reviewerNote: '', aiChecking: false
+    });
+  }else{
+    try{
+      const res = await fetch(`${API_ENDPOINT}/tasks`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      if(!res.ok) throw new Error('create failed');
+      tasks.push(await res.json());
+    }catch(err){
+      alert('มอบหมายงานไม่สำเร็จ ลองใหม่อีกครั้ง');
+      return;
+    }
+  }
+  e.target.reset();
+  closeOverlay('assignOverlay');
+  render();
+});
+
+// ---- Submit-for-review modal ----
+let reviewFile = null;
+const reviewDropzone = document.getElementById('reviewDropzone');
+const reviewFileInput = document.getElementById('reviewFileInput');
+const reviewDzText = document.getElementById('reviewDzText');
+const confirmSubmitReview = document.getElementById('confirmSubmitReview');
+
+reviewDropzone.addEventListener('click', () => reviewFileInput.click());
+reviewDropzone.addEventListener('dragover', e => e.preventDefault());
+reviewDropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  if(e.dataTransfer.files[0]) setReviewFile(e.dataTransfer.files[0]);
+});
+reviewFileInput.addEventListener('change', () => {
+  if(reviewFileInput.files[0]) setReviewFile(reviewFileInput.files[0]);
+});
+function setReviewFile(f){
+  reviewFile = f;
+  reviewDropzone.classList.add('has-file');
+  reviewDzText.textContent = '📄 ' + f.name;
+  confirmSubmitReview.disabled = false;
+}
+
+function openSubmitModal(t){
+  reviewFile = null;
+  reviewDropzone.classList.remove('has-file');
+  reviewDzText.textContent = 'ลากไฟล์มาวาง หรือคลิกเพื่อเลือก';
+  confirmSubmitReview.disabled = true;
+  document.getElementById('submitSub').textContent = `${t.task} · ${t.employee}`;
+  document.getElementById('submitBody').innerHTML = document.getElementById('submitBody').innerHTML; // keep dropzone
+  openOverlay('submitOverlay');
+}
+
+// ยกเลิก = ยังไม่พร้อมส่ง -> การ์ดอยู่ที่เดิม (in-process) ไม่ขยับ
+document.getElementById('cancelSubmitReview').addEventListener('click', () => {
+  pendingSubmitId = null;
+  closeOverlay('submitOverlay');
+  render();
+});
+
+confirmSubmitReview.addEventListener('click', async () => {
+  const t = findTask(pendingSubmitId);
+  if(!t || !reviewFile) return;
+  closeOverlay('submitOverlay');
+
+  // แสดง state "AI กำลังตรวจ" ชั่วคราวโดยตรงในคอลัมน์ under-review
+  t.status = 'under-review';
+  t.aiChecking = true;
+  t.submittedFile = reviewFile.name;
+  t.aiNote = '🤖 AI กำลังตรวจ...';
+  render();
+
+  if(MOCK_MODE){
+    const verdict = await mockAiCheck();
+    t.aiChecking = false;
+    if(verdict.status === 'pass'){
+      t.aiNote = 'AI ตรวจผ่านแล้ว รอหัวหน้าตรวจ';
+      t.reviewerNote = '';
+      // status ยังคงอยู่ under-review รอคนจริงลากไป complete/revision เอง
+    }else{
+      t.status = 'revision';
+      t.aiNote = '';
+      t.reviewerNote = '🤖 AI: ' + verdict.reason;
+    }
+    render();
+    return;
+  }
+
+  try{
+    const fd = new FormData();
+    fd.append('file', reviewFile);
+    const res = await fetch(`${API_ENDPOINT}/tasks/${t.id}/submit`, { method:'POST', body: fd });
+    if(!res.ok) throw new Error('submit failed');
+    mergeTask(await res.json());
+  }catch(err){
+    t.aiChecking = false;
+    t.aiNote = '';
+    t.reviewerNote = '⚠️ ส่งให้ AI ตรวจไม่สำเร็จ กรุณาลองส่งใหม่';
+    t.status = 'revision';
+  }
+  render();
+});
+
+async function mockAiCheck(){
+  await new Promise(r => setTimeout(r, 1300));
+  const pass = Math.random() > 0.4;
+  return pass
+    ? {status:'pass', reason:'ครบถ้วนตรงตามตัวอย่างอ้างอิง'}
+    : {status:'fail', reason:'ยอดรวมท้ายชีทไม่ตรงกับตัวอย่างอ้างอิง กรุณาตรวจสอบใหม่'};
+}
+
+// ---- Reject modal (human reviewer) ----
+document.getElementById('rejectForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const t = findTask(pendingRejectId);
+  const reason = document.getElementById('rejectReason').value.trim();
+  if(t){
+    if(MOCK_MODE){
+      t.status = 'revision';
+      t.aiNote = '';
+      t.reviewerNote = '🧑‍💼 ' + reason;
+    }else{
+      try{
+        const res = await fetch(`${API_ENDPOINT}/tasks/${t.id}/review`, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({action:'reject', reason})
+        });
+        if(!res.ok) throw new Error('review failed');
+        mergeTask(await res.json());
+      }catch(err){
+        alert('ตีกลับงานไม่สำเร็จ ลองใหม่อีกครั้ง');
+      }
+    }
+  }
+  closeOverlay('rejectOverlay');
+  render();
+});
+
+render();
+loadTasks();
+
+// ---- Theme toggle ----
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  themeToggle.textContent = t === 'dark' ? '☀️' : '🌙';
+}
+applyTheme(localStorage.getItem('theme') || 'light');
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+});
+</script>
+</body>
+</html>

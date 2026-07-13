@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ส่งงานบัญชี — Synnex Thailand</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="ส่งงานบัญชี">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F5F5F7;
+  --surface:#FFFFFF;
+  --card-fill:#FAFAFA;
+  --card-border:#D8D8D8;
+  --card-border-lg:#D0D0D0;
+  --text-primary:#111111;
+  --text-label:#4A4A4A;
+  --text-faint:#8A8A8A;
+  --green:#0F7A4B;
+  --green-bg:#E5F5EC;
+  --red:#B23A2E;
+  --red-bg:#FBEAE8;
+  --amber:#B4790F;
+  --amber-bg:#FBF1E1;
+  --radius-lg:20px;
+  --radius-sm:16px;
+  --radius-pill:20px;
+  --font-en:'Inter',sans-serif;
+  --font-th:'IBM Plex Sans Thai','Inter',sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0B1020;
+  --surface:#151C2E;
+  --card-fill:#1E293B;
+  --card-border:#334155;
+  --card-border-lg:#475569;
+  --text-primary:#F8FAFC;
+  --text-label:#CBD5E1;
+  --text-faint:#94A3B8;
+  --green:#4ADE80;
+  --green-bg:#0B3B2A;
+  --red:#FB7185;
+  --red-bg:#3B1824;
+  --amber:#FBBF24;
+  --amber-bg:#3B2E0B;
+}
+[data-theme="dark"] .topbar{background:rgba(11,16,32,0.94);border-bottom-color:#334155;}
+[data-theme="dark"] .brand-text h1{color:var(--text-primary);}
+[data-theme="dark"] .brand-text p{color:var(--text-faint);}
+[data-theme="dark"] .nav-link{color:var(--text-label);}
+[data-theme="dark"] .nav-link:hover{background:#1E293B;color:var(--text-primary);}
+[data-theme="dark"] .theme-toggle-btn{background:#1E293B;border-color:#475569;color:var(--text-primary);}
+[data-theme="dark"] .theme-toggle-btn:hover{background:#334155;}
+[data-theme="dark"] .dropzone{background:#111827;}
+[data-theme="dark"] .file-chip{background:#111827;border-color:#334155;}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);color:var(--text-primary);font-family:var(--font-th);
+  line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:80px;
+  transition:background 0.2s ease,color 0.2s ease;
+}
+a{color:var(--text-primary);text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+
+.topbar{
+  border-bottom:1.5px solid var(--card-border-lg);padding:16px 28px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  position:sticky;top:0;background:rgba(245,245,247,0.95);backdrop-filter:blur(8px);z-index:100;
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--text-primary);
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-en);
+  font-weight:800;color:var(--surface);font-size:14px;flex-shrink:0;}
+.brand-text h1{font-size:15px;font-weight:700;font-family:var(--font-en);}
+.brand-text p{font-size:11.5px;color:var(--text-label);}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+.nav-link{font-size:13px;font-weight:500;color:var(--text-label);padding:8px 14px;border-radius:var(--radius-pill);}
+.nav-link:hover{background:var(--card-fill);color:var(--text-primary);}
+.nav-link.active{background:var(--text-primary);color:var(--surface);}
+[data-theme="dark"] .nav-link.active{background:var(--green);color:#0B1020;}
+.theme-toggle-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+  border-radius:50%;background:var(--card-fill);border:1.5px solid var(--card-border);
+  font-size:16px;margin-left:6px;flex-shrink:0;transition:background 0.2s ease,transform 0.15s ease;}
+.theme-toggle-btn:hover{background:var(--card-border);}
+.theme-toggle-btn:active{transform:scale(0.9);}
+
+.wrap{max-width:720px;margin:0 auto;padding:40px 24px;}
+
+.page-head{margin-bottom:28px;}
+.page-head .eyebrow{
+  font-family:var(--font-en);font-size:11.5px;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;display:block;
+}
+.page-head h2{font-size:26px;font-weight:700;margin-bottom:6px;}
+.page-head p{font-size:13.5px;color:var(--text-label);max-width:52ch;}
+
+.card{background:var(--surface);border:1.5px solid var(--card-border);border-radius:var(--radius-lg);padding:1.75rem;}
+.card + .card{margin-top:20px;}
+
+.field{margin-bottom:20px;}
+.field:last-child{margin-bottom:0;}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--text-label);margin-bottom:8px;}
+.field select,.field input[type="text"]{
+  width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--card-border);
+  background:var(--card-fill);color:var(--text-primary);font-family:inherit;font-size:14px;
+}
+.field select:focus,.field input[type="text"]:focus{border-color:var(--green);}
+.hint{font-size:11.5px;color:var(--text-faint);margin-top:6px;}
+
+.dropzone{
+  border:1.5px dashed var(--card-border-lg);border-radius:var(--radius-sm);
+  background:var(--card-fill);padding:32px 20px;text-align:center;cursor:pointer;
+  transition:border-color 0.15s ease,background 0.15s ease;
+}
+.dropzone.dragover{border-color:var(--green);background:var(--green-bg);}
+.dropzone-icon{font-size:26px;margin-bottom:10px;}
+.dropzone-title{font-size:13.5px;font-weight:600;color:var(--text-label);margin-bottom:4px;}
+.dropzone-sub{font-size:11.5px;color:var(--text-faint);}
+input[type="file"]{display:none;}
+
+.file-chip{
+  display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 14px;
+  border:1.5px solid var(--card-border);border-radius:var(--radius-sm);background:var(--card-fill);
+}
+.file-chip-icon{font-size:16px;}
+.file-chip-name{font-size:13px;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.file-chip-remove{font-size:12px;color:var(--text-faint);font-weight:600;background:none;border:none;padding:4px 8px;}
+.file-chip-remove:hover{color:var(--red);}
+
+.submit-btn{
+  width:100%;padding:14px;border-radius:var(--radius-pill);border:none;
+  background:var(--text-primary);color:var(--surface);font-size:14.5px;font-weight:700;
+  margin-top:20px;transition:opacity 0.15s ease,transform 0.1s ease;
+}
+.submit-btn:hover{opacity:0.88;}
+.submit-btn:active{transform:scale(0.99);}
+.submit-btn:disabled{opacity:0.45;cursor:not-allowed;}
+
+/* ===== Result panel ===== */
+.result{display:none;margin-top:20px;}
+.result.show{display:block;}
+
+.checking{
+  display:flex;flex-direction:column;align-items:center;gap:14px;padding:36px 20px;text-align:center;
+}
+.checking-spinner{
+  width:34px;height:34px;border-radius:50%;border:3px solid var(--card-border);
+  border-top-color:var(--green);animation:spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.checking-title{font-size:14px;font-weight:600;}
+.checking-sub{font-size:12px;color:var(--text-faint);}
+
+/* Stamp — the signature element: an accountant's approval stamp,
+   the visual answer to "บอกว่าส่งแล้วแต่งานยังไม่เสร็จ" */
+.stamp-wrap{display:flex;flex-direction:column;align-items:center;padding:28px 20px 8px;text-align:center;}
+.stamp{
+  width:132px;height:132px;border-radius:50%;
+  border:4px solid var(--green);color:var(--green);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--font-en);
+  transform:rotate(-8deg) scale(0.4);opacity:0;
+  animation:stampdown 0.45s cubic-bezier(.2,1.4,.4,1) 0.15s forwards;
+  position:relative;
+}
+.stamp::before,.stamp::after{
+  content:"";position:absolute;border-radius:50%;border:1.5px solid var(--green);inset:8px;
+}
+.stamp::after{inset:14px;}
+.stamp-check{font-size:34px;line-height:1;margin-bottom:4px;}
+.stamp-label{font-size:11px;font-weight:800;letter-spacing:1px;}
+.stamp.fail{border-color:var(--red);color:var(--red);}
+.stamp.fail::before,.stamp.fail::after{border-color:var(--red);}
+@keyframes stampdown{
+  0%{transform:rotate(-8deg) scale(2.2);opacity:0;}
+  60%{transform:rotate(-8deg) scale(0.92);opacity:1;}
+  100%{transform:rotate(-8deg) scale(1);opacity:1;}
+}
+.stamp-meta{font-size:12px;color:var(--text-faint);margin-top:14px;}
+
+.result-title{font-size:15px;font-weight:700;text-align:center;margin-top:6px;}
+.result-title.pass{color:var(--green);}
+.result-title.fail{color:var(--red);}
+
+.feedback-box{
+  margin-top:18px;padding:16px 18px;border-radius:var(--radius-sm);
+  background:var(--red-bg);border:1.5px solid rgba(178,58,46,0.25);
+}
+[data-theme="dark"] .feedback-box{border-color:rgba(251,113,133,0.25);}
+.feedback-box h3{font-size:12.5px;font-weight:700;color:var(--red);margin-bottom:8px;}
+.feedback-box ul{padding-left:18px;}
+.feedback-box li{font-size:13px;color:var(--text-label);margin-bottom:4px;}
+
+.retry-btn{
+  width:100%;padding:12px;border-radius:var(--radius-pill);border:1.5px solid var(--card-border-lg);
+  background:transparent;color:var(--text-primary);font-size:13.5px;font-weight:600;margin-top:16px;
+}
+.retry-btn:hover{background:var(--card-fill);}
+
+.error-note{
+  display:none;margin-top:14px;padding:12px 16px;border-radius:var(--radius-sm);
+  background:var(--amber-bg);border:1.5px solid rgba(180,121,15,0.25);font-size:12.5px;color:var(--text-label);
+}
+.error-note.show{display:block;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div class="brand-text">
+      <h1>Synnex Thailand</h1>
+      <p>ส่งงานบัญชี</p>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Dashboard</a>
+    <a class="nav-link" href="task-board.html">บอร์ดงาน</a>
+    <a class="nav-link active" href="submit-task.html">ส่งงาน</a>
+    <a class="nav-link" href="reference-upload.html">ตัวอย่างอ้างอิง</a>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="สลับธีมสว่าง/มืด">🌙</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="page-head">
+    <span class="eyebrow">Task Submission · AI-verified</span>
+    <h2>ส่งงานบัญชี</h2>
+    <p>อัพโหลดไฟล์งาน ระบบจะให้ AI ตรวจก่อนว่างานเสร็จสมบูรณ์จริง แล้วค่อยขึ้นสถานะ "ส่งงานแล้ว"</p>
+  </div>
+
+  <form class="card" id="submitForm">
+    <div class="field">
+      <label for="employeeName">ชื่อผู้ส่งงาน</label>
+      <input type="text" id="employeeName" placeholder="เช่น กิ่ง" required>
+    </div>
+
+    <div class="field">
+      <label for="taskType">ประเภทงาน</label>
+      <!-- TODO: เพิ่มตัวเลือกงานประเภทอื่นในอนาคตได้ที่นี่ -->
+      <select id="taskType" required>
+        <option value="" disabled selected>เลือกงาน</option>
+        <option value="task-1">[ระบุชื่องาน เช่น กระทบยอดธนาคารประจำเดือน]</option>
+      </select>
+      <p class="hint">ตอนนี้เปิดตรวจงานประเภทเดียวก่อน (MVP) จะเพิ่มประเภทอื่นทีหลัง</p>
+    </div>
+
+    <div class="field">
+      <label>ไฟล์งาน</label>
+      <div class="dropzone" id="dropzone">
+        <div class="dropzone-icon">📎</div>
+        <div class="dropzone-title">ลากไฟล์มาวาง หรือคลิกเพื่อเลือก</div>
+        <div class="dropzone-sub">รองรับ Excel, PDF, รูปภาพ</div>
+      </div>
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.pdf,.png,.jpg,.jpeg">
+      <div id="fileChip"></div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn" disabled>ส่งงานให้ AI ตรวจ</button>
+    <div class="error-note" id="errorNote"></div>
+  </form>
+
+  <div class="card result" id="resultCard">
+    <!-- filled in by JS -->
+  </div>
+
+</div>
+
+<script>
+// ===================================================================
+// MOCK_MODE: true = จำลองผลตรวจในเครื่อง (ไว้พรีวิว UI ก่อน Worker เสร็จ)
+//            false = ยิงไป API จริงที่ API_ENDPOINT
+// เมื่อ Worker พร้อมใช้งาน: เปลี่ยน MOCK_MODE เป็น false และใส่ URL จริง
+//
+// หมายเหตุ: หน้านี้เป็นฟอร์มแบบเดี่ยว (เลือกประเภทงานเอง ไม่ผูกกับการ์ดในบอร์ด)
+// แต่ Worker จริงต้องมี task id ก่อนถึงจะส่งไฟล์เข้า /tasks/:id/submit ได้
+// ตอนนี้ทาง "ส่งงาน" หลักคือลากการ์ดในหน้าบอร์ด (task-board.html) ซึ่งมี task id อยู่แล้ว
+// หน้านี้เลยยังคง MOCK_MODE ไว้ก่อน — ถ้าจะใช้จริงในอนาคต ต้องเพิ่ม endpoint
+// ฝั่ง Worker ที่รับ employeeName+taskType แล้วหา/สร้าง task ให้เอง
+// ===================================================================
+const MOCK_MODE = true;
+const API_ENDPOINT = "https://REPLACE-WITH-YOUR-WORKER-URL.workers.dev/submit";
+
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  themeToggle.textContent = t === 'dark' ? '☀️' : '🌙';
+}
+applyTheme(localStorage.getItem('theme') || 'light');
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+});
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const fileChip = document.getElementById('fileChip');
+const submitBtn = document.getElementById('submitBtn');
+let selectedFile = null;
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('dragover');
+  if (e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) setFile(fileInput.files[0]);
+});
+
+function setFile(file){
+  selectedFile = file;
+  fileChip.innerHTML = `
+    <div class="file-chip">
+      <span class="file-chip-icon">📄</span>
+      <span class="file-chip-name">${escapeHtml(file.name)}</span>
+      <button type="button" class="file-chip-remove" id="removeFile">ลบ</button>
+    </div>`;
+  document.getElementById('removeFile').addEventListener('click', () => {
+    selectedFile = null; fileInput.value = ''; fileChip.innerHTML = ''; validateForm();
+  });
+  validateForm();
+}
+
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+const employeeName = document.getElementById('employeeName');
+const taskType = document.getElementById('taskType');
+[employeeName, taskType].forEach(el => el.addEventListener('input', validateForm));
+
+function validateForm(){
+  submitBtn.disabled = !(employeeName.value.trim() && taskType.value && selectedFile);
+}
+
+const form = document.getElementById('submitForm');
+const resultCard = document.getElementById('resultCard');
+const errorNote = document.getElementById('errorNote');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorNote.classList.remove('show');
+  submitBtn.disabled = true;
+
+  resultCard.classList.add('show');
+  resultCard.innerHTML = `
+    <div class="checking">
+      <div class="checking-spinner"></div>
+      <div class="checking-title">AI กำลังตรวจงาน…</div>
+      <div class="checking-sub">เทียบกับงานตัวอย่างที่เคยผ่านการตรวจแล้ว</div>
+    </div>`;
+  resultCard.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  try{
+    const verdict = MOCK_MODE ? await mockCheck() : await realCheck();
+    renderResult(verdict);
+  }catch(err){
+    errorNote.textContent = "ส่งงานไม่สำเร็จ เกิดข้อผิดพลาดในการเชื่อมต่อ ลองใหม่อีกครั้ง";
+    errorNote.classList.add('show');
+    resultCard.classList.remove('show');
+    submitBtn.disabled = false;
+  }
+});
+
+async function mockCheck(){
+  await new Promise(r => setTimeout(r, 1400));
+  const pass = Math.random() > 0.4;
+  return pass
+    ? {status:'pass', reason:'ครบถ้วนตรงตามตัวอย่างอ้างอิง'}
+    : {status:'fail', reason:'พบรายการที่ยังไม่ครบ', missing:['ยังไม่มียอดยกมาต้นเดือน','คอลัมน์หมายเหตุว่างในหลายแถว','ยอดรวมท้ายชีทไม่ตรงกับตัวอย่าง']};
+}
+
+async function realCheck(){
+  const fd = new FormData();
+  fd.append('employeeName', employeeName.value.trim());
+  fd.append('taskType', taskType.value);
+  fd.append('file', selectedFile);
+  const res = await fetch(API_ENDPOINT, {method:'POST', body: fd});
+  if(!res.ok) throw new Error('bad response');
+  return await res.json();
+}
+
+function renderResult(v){
+  const now = new Date().toLocaleString('th-TH', {dateStyle:'medium', timeStyle:'short'});
+  if(v.status === 'pass'){
+    resultCard.innerHTML = `
+      <div class="stamp-wrap">
+        <div class="stamp"><div class="stamp-check">✓</div><div class="stamp-label">PASSED</div></div>
+        <div class="result-title pass">ตรวจผ่านแล้ว — ส่งงานแล้ว ✅</div>
+        <div class="stamp-meta">${escapeHtml(v.reason || '')} · ${now}</div>
+      </div>`;
+  }else{
+    resultCard.innerHTML = `
+      <div class="stamp-wrap">
+        <div class="stamp fail"><div class="stamp-check">✕</div><div class="stamp-label">NOT YET</div></div>
+        <div class="result-title fail">ยังไม่ผ่าน — ยังไม่ขึ้นว่าส่งงานแล้ว</div>
+        <div class="stamp-meta">${now}</div>
+      </div>
+      <div class="feedback-box">
+        <h3>สิ่งที่ต้องแก้ก่อนส่งใหม่</h3>
+        <ul>${(v.missing || [v.reason]).map(m => `<li>${escapeHtml(m)}</li>`).join('')}</ul>
+      </div>
+      <button type="button" class="retry-btn" id="retryBtn">แก้ไขแล้ว ส่งใหม่</button>`;
+    document.getElementById('retryBtn').addEventListener('click', () => {
+      resultCard.classList.remove('show');
+      resultCard.innerHTML = '';
+      submitBtn.disabled = false;
+    });
+  }
+}
+</script>
+</body>
+</html>
