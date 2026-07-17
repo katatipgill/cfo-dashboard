@@ -104,8 +104,10 @@ button{font-family:inherit;cursor:pointer;}
 .news-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
 .refresh-news-btn{display:flex;align-items:center;gap:6px;flex-shrink:0;background:var(--card-fill);border:1.5px solid var(--card-border);color:var(--text-primary);font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:var(--radius-pill);font-family:var(--font-th);}
 .refresh-news-btn:hover{background:var(--text-primary);color:#fff;border-color:var(--text-primary);}
-.refresh-news-btn:active .refresh-icon{display:inline-block;animation:spin 0.6s linear;}
-.refresh-icon{font-size:14px;line-height:1;}
+.refresh-news-btn:active .refresh-icon{display:inline-flex;}
+.refresh-icon.spin-loading svg{animation:spin 0.8s linear infinite;}
+.refresh-icon{font-size:14px;line-height:1;display:inline-flex;}
+.refresh-icon svg{width:14px;height:14px;display:block;}
 @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 .trigger-news-status{margin-bottom:12px;padding:10px 14px;border-radius:var(--radius-sm);font-size:12px;line-height:1.5;}
 .trigger-news-status.status-info{background:var(--card-fill);border:1.5px solid var(--card-border);color:var(--text-label);}
@@ -210,7 +212,7 @@ footer{max-width:1200px;margin:0 auto;padding:24px 28px;border-top:1.5px solid v
 
 <div class="topbar">
   <div class="brand">
-    <div class="brand-mark"><img src="icon-192.png" alt="Synnex"></div>
+    <div class="brand-mark"><img src="synnex-logo-transparent.png" alt="Synnex"></div>
     <div class="brand-text">
       <h1>CFO Dashboard</h1>
       <p>Synnex Thailand · FX &amp; Treasury</p>
@@ -252,7 +254,7 @@ footer{max-width:1200px;margin:0 auto;padding:24px 28px;border-top:1.5px solid v
           <p>ข่าวเศรษฐกิจไทย, ตลาดโลก, อัตราแลกเปลี่ยน, เทคโนโลยี/AI, และข่าว Synnex — เฉพาะวันนี้และเมื่อวาน</p>
         </div>
         <button class="refresh-news-btn" id="triggerNewsBtn" onclick="triggerNewsWorkflow()" title="สั่งให้ GitHub Actions ดึงข่าวใหม่ทันที">
-          <span class="refresh-icon" id="triggerNewsIcon">⚡</span> หาข่าวใหม่
+          <span class="refresh-icon" id="triggerNewsIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></span> หาข่าวใหม่
         </button>
       </div>
       <div id="triggerNewsStatus" class="trigger-news-status" style="display:none;"></div>
@@ -349,7 +351,7 @@ footer{max-width:1200px;margin:0 auto;padding:24px 28px;border-top:1.5px solid v
           <p id="lineSummaryUpdated">กำลังโหลด...</p>
         </div>
         <button class="refresh-news-btn" id="triggerLineSummaryBtn" onclick="triggerLineSummaryRefresh()" title="สั่งให้บอทสรุปข้อความ LINE ของทั้งวันใหม่ทันที">
-          <span class="refresh-icon" id="triggerLineSummaryIcon">⚡</span> สรุปใหม่ตอนนี้
+          <span class="refresh-icon" id="triggerLineSummaryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></span> สรุปใหม่ตอนนี้
         </button>
       </div>
       <div id="triggerLineSummaryStatus" class="trigger-news-status" style="display:none;"></div>
@@ -585,8 +587,7 @@ async function triggerNewsWorkflow(){
   const icon = document.getElementById('triggerNewsIcon');
   const token = getGithubToken();
   if(!token){ return; }
-  const originalIcon = icon.textContent;
-  icon.textContent = '⏳';
+  icon.classList.add('spin-loading');
   btn.disabled = true;
   showTriggerStatus('กำลังสั่งให้ GitHub Actions ดึงข่าวใหม่...', 'info');
   const baselineUpdatedAt = await getNewsUpdatedAt();
@@ -612,7 +613,7 @@ async function triggerNewsWorkflow(){
   }catch(err){
     showTriggerStatus('เชื่อมต่อ GitHub API ไม่สำเร็จ กรุณาเช็คอินเทอร์เน็ตแล้วลองใหม่', 'error');
   }finally{
-    icon.textContent = originalIcon;
+    icon.classList.remove('spin-loading');
     btn.disabled = false;
   }
 }
@@ -729,8 +730,7 @@ async function pollForLineSummaryUpdate(baselineUpdatedAt){
 async function triggerLineSummaryRefresh(){
   const btn = document.getElementById('triggerLineSummaryBtn');
   const icon = document.getElementById('triggerLineSummaryIcon');
-  const originalIcon = icon.textContent;
-  icon.textContent = '⏳';
+  icon.classList.add('spin-loading');
   btn.disabled = true;
   showLineSummaryStatus('กำลังสั่งให้บอทสรุปข้อความ LINE ของวันนี้ทั้งหมดใหม่...', 'info');
   const baselineUpdatedAt = await getLineSummaryUpdatedAt();
@@ -751,7 +751,7 @@ async function triggerLineSummaryRefresh(){
   }catch(err){
     showLineSummaryStatus('เชื่อมต่อ worker ไม่สำเร็จ กรุณาเช็คอินเทอร์เน็ตแล้วลองใหม่', 'error');
   }finally{
-    icon.textContent = originalIcon;
+    icon.classList.remove('spin-loading');
     btn.disabled = false;
   }
 }
