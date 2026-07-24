@@ -1,82 +1,96 @@
 {
-  "updatedAt": "2026-07-23T17:03:56.906641+00:00",
+  "updatedAt": "2026-07-24T09:42:16.814432+00:00",
   "items": [
     {
-      "title": "ไทยจะเป็น AI Hub อาเซียนได้อย่างไร? หัวเว่ย ต้องเร่งแข่งสร้าง ‘คน-ระบบนิเวศ’ - springnews",
-      "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1MREtpM3Z4dFI1M0FFLTNPS2MwdUJQQ19weW1ubzFiclVKS1dQZ1BoMlRJczBQRmtEOUdSbmtoZDZwYXQ2dkxYSHBDNTd2WWJWNTNVUzFzcEliUktMcjdvZE4wWQ?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 16:57:14 GMT",
+      "title": "“สันติธาร” มองสงครามตะวันออกกลางยืดเยื้อ กดดันเศรษฐกิจไทย เสี่ยงน้ำมันแพงดันเงินเฟ้อ - LINE TODAY",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9qbUlOOUVtUjcxTHVMSGo3MVJrZkhtbU4tcVBuNWNaeFhRLThpaTc4N21UblhHQ0E1dHVqemw2U0JMeGRzNFZRU2N5NFJKb3VHMXpXVVZ3?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 08:35:59 GMT",
+      "source": "LINE TODAY",
+      "category": "เศรษฐกิจไทย"
+    },
+    {
+      "title": "คาด \"หุ้นไทย\" สัปดาห์หน้า ปัจจัยกดดันรอบด้าน เล็งกลุ่ม Domestic รอด! [24/07/2026] - HoonVision | หุ้นวิชั่น - หุ้น ข่าวหุ้น หุ้นไทยวันนี้ หุ้นวันนี้ หุ้นเด่น วิเคราะห์หุ้น ธุรกิจ การเงิน เศรษฐกิจ การลงทุน ดัชนีราคาหุ้น - HoonVision",
+      "link": "https://news.google.com/rss/articles/CBMizwJBVV95cUxQeGNsY040aGpFSlgwa1FRZEdCUDg1aVMwcGdHbXpMLWF0cWQxN3hsTzBUbDBjUzBpaWtvaERlRzB6THlidmI0a0Jic0VKOEpKUzh0WU0yT08tTkphdzZKQjE1Vy04RElYSzRZbG5IMWpIWGFGTklMSUhJbkRWVjduVy03NmY1NGpEbHRkTnI4ZVg0bUhOdXA5TlNKaDJyX3R5RENfT0x0VWVUc2lhVlpFUEx2QUppU0t4WlRuUDhYb0REenRxUy10dHNlU0Jlc1VhaEZtWFNqOUptTWkxTTAzWTFBNWZzZ0lJNnlzZUFHdFRZTXNIMTJxWVBGWjJkdWxkUlVrUjdheVhSSVRNT1lMS0xfb2pxaDduNGY5Vlhic0RFcTlzZHZhazhvTmxOS283QmE3N281Y2luOWVHTEwtZ2VnTXdVVVRQbktmU1dqbw?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 08:32:00 GMT",
+      "source": "HoonVision",
+      "category": "เศรษฐกิจไทย"
+    },
+    {
+      "title": "Huawei ผนึกพันธมิตรปั้นไทยสู่ AI Hub อาเซียน เปิด Thailand AI Ecosystem Initiative พร้อมนำ Agentic Infrastructure และ CodeArts Agent เข้าไทย - Techsauce",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQNE9raDZmSmNuYjVCWmctRjFHNGJTQ3NCSVNvTmVGeGtmcDh0WEYtQXNKRDkxMFMtUHlDc3htQmhlR1BRVlUwN3lfcEVfWThJRXQ5ZENBbENnVk9acXE0NmwwRVpPUmVnZWstVVMtcXRzNXRiYlZFdENIbDJRZ0RCZkJOVGNfeG1xTjlSbFhWalY3QQ?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 07:09:03 GMT",
+      "source": "Techsauce",
+      "category": "เทคโนโลยี/AI"
+    },
+    {
+      "title": "หุ้นไทยภาคเช้า ปิดลบ 4.72 จุด ตะวันออกกลางส่อยืดเยื้อ หวั่นเงินเฟ้อพุ่ง แม้กลุ่มแบงก์ช่วยพยุง - วารสารการเงินธนาคาร",
+      "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9kZVdKamRJZDY1RURrcmZtWlpTaEFlTUFKeGhMNDFOY18yMDNrQ2FxWXlZdnlrNWRjRkc5b1MwYU1sTDRkRGRVRGk4TU02ZGszQm95dQ?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 06:34:43 GMT",
+      "source": "วารสารการเงินธนาคาร",
+      "category": "เศรษฐกิจไทย"
+    },
+    {
+      "title": "บลจ.กรุงศรี มองเศรษฐกิจไทยครึ่งปีหลัง 2569 โตต่อเนื่อง รับส่งออกและต่างชาติลงทุน AI ดัน SET ลุ้นแตะ 1,700 จุด แนะซื้อหุ้นเทคจีน รับฟันด์โฟลว์ หุ้นชิปปรับฐาน - thestandard.co",
+      "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTFB3SjM5aE1rWEJUWUgxQjNaNzNuRW84eTFQZ3hiQkowRUxWNlVVTThiazl2b1BZRW1tSUMyWjVTMV9wNGR3clp5Rzg1MG53djZYQWVmQVlFVlB1YlFta0tuUGJxdHY5WEhKUlVRMHdOdHE?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 06:17:41 GMT",
+      "source": "thestandard.co",
+      "category": "เศรษฐกิจไทย"
+    },
+    {
+      "title": "ส่งออกแรงเกินคาด คลังปรับเศรษฐกิจไทยโต 2.5% - thaitv5hd.com",
+      "link": "https://news.google.com/rss/articles/CBMikARBVV95cUxPYVdUR1U0UXdoQWVnN3hFTWg1OHpTNTZ4SUJJaVNxQk01WTctME1FN29oN2stekdrdFBrck5RYldCSWtBYmt4TDZmOHpPdUZhWDZYR3dxWDNBNDh3cXdCS09aanVfcHhJMGpYY1JMRE9YRGdia0hjVElVaVBRNVBhQVY2UkVqX0I2cG4zT0M5bWF0c2xrbUVhVG9mNVhDaWxCeVJQcnBRWlR5Q1hCMmc4SEhUTFFGaDhhSXlCQy1oamhJN0ZzQkpQVEhNQnpGZnpzVXlGU1hjSDVZdml3WFZyeFAzZDZqbkt2a2pUdGNYZDIxa29vQzZpaS1ERjFQUjcwM3NiYmFmTTA1ZUZCaW5NQXZKS2d4ZUVyb1VBWEZ3T0d6SFliekk0b0J6b0E3bklKUGlBeWlZbjNUY2ZOMXNxS2loeGg2SnRWc2Fxak9MYVBqdlpXRG1aNU9tMzI0TU5zdlNEY2FUMDB0V3o5NHM4VC1ETDZybVZxaFFFZTI5UFFBaVM1RjdXdmM0anA3cnpRTU9WdVdJVUpWa0F0RHlhSEY1dkNxRGgwY2VqTVd4TWo3dEJHb1dXeXJEMzVsS3JuNVZVNzRNUlJHbkc5UUdzNlZ3X3VZZVFHblFVc05TM2JMY3FxS0Q2Qk51Q3U0ei1iUGpRRTlHSkFMcEJBcWdZV2RyQ1VLaC11bFBEcjYtOFc?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 05:56:15 GMT",
+      "source": "thaitv5hd.com",
+      "category": "เศรษฐกิจไทย"
+    },
+    {
+      "title": "ภาวะตลาดหุ้นไทย: ปิดเช้าลบ 4.72 จุด ตอ.กลางส่อยืดเยื้อ หวั่นเงินเฟ้อพุ่ง แม้กลุ่มแบงก์ช่วยพยุง - สำนักข่าวอินโฟเควสท์",
+      "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBLazZKM3JPR3psQk1IbUY5cDNSWnh3MGFRRW5vR0NfOTc4c1h0dUFsV3FzRUllSDRZVVBNUjdiQlZVMC1oXzdRNW1BWGdwM2p4?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 05:47:37 GMT",
+      "source": "สำนักข่าวอินโฟเควสท์",
+      "category": "เศรษฐกิจไทย"
+    },
+    {
+      "title": "ดีอี เดินหน้า 3 ภารกิจดิจิทัล เสริมรากฐาน ดัน AI สร้างนวัตกรรมที่น่าเชื่อถือ | The Better - LINE TODAY",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE81Wk9vQXdqelpfYm55X0U0Ml9tcVVVTXM4VmdtWFFmemtSRVZMTENaeXVqZURVd2psX2x2amRRSC1vX2JSSGwtRUl1Y2xYUnNYWlZkN0t3?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 03:25:57 GMT",
+      "source": "LINE TODAY",
+      "category": "เทคโนโลยี/AI"
+    },
+    {
+      "title": "ไทยจะเป็น AI Hub อาเซียนได้อย่างไร? หัวเว่ย ชูแผนพัฒนา AI สร้าง ‘คน-ระบบนิเวศ’ - springnews",
+      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA1ZjJ3ZzY0STl3RGxnb0NYc0pNVEs2dzRieUJaWFZBU3NiUmN3R2FDNkdNNVJuUW85T08yc0VidWtzMlljczAxbkdkN21zdHNLSU4tYkZ2a1RHN1Uxc2M0b1BUQmRmT09JTmo0?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 03:15:59 GMT",
       "source": "springnews",
       "category": "เทคโนโลยี/AI"
     },
     {
-      "title": "กัลฟ์ เอดจ์ จับมือ ค็อกนิแซนท์ ประกาศความร่วมมือเชิงกลยุทธ์ด้าน AI และบริการ เร่งขับเคลื่อนการเปลี่ยนผ่านสู่ AI ของประเทศไทย - posttoday",
-      "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9sRTZvX1IyMlczT3lVMGY0MThWVWczajRqM0h6eVMzTkp6SjNBMTNqRno2TkRORDNGaGZUSXJqM2Zfd3Nxa2NoRWh3U3ZCZnBPLU50X1lDZF9YRC1HTWc?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 14:07:00 GMT",
-      "source": "posttoday",
+      "title": "ผู้บริหารเครือซีพี ร่วมเวที Huawei Thailand Digital & AI Summit 2026 ชูยุทธศาสตร์ AI For All ยกระดับศักยภาพองค์กร สู่การใช้งานจริง - WeAreCP",
+      "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAtaWszWHVsU2hZc2M5Ti04UFNxcjRJMEtDTWVoS1NEakhsN1g5blpTQW14STBQUnlNZExFYmZsTFcwMl81bVJ5dTN5R0tXYm8?oc=5",
+      "pubDate": "Fri, 24 Jul 2026 02:22:26 GMT",
+      "source": "WeAreCP",
       "category": "เทคโนโลยี/AI"
     },
     {
-      "title": "บลจ.กรุงศรี เล็งอัพเป้าหุ้นไทย 1,700 จุด ปันผลเด่นหนุน SET ดึงฟันด์โฟลว์ไหลเข้า - Hoonsmart",
-      "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1nNkR5dHA3dDhhcDZLN0ZSWU5MT2FYc0RFNkotU1hSRHM1SG1HQVdDN05fdTZHSGhLYWRxTGN3a05iZVZVZUFqSVFNNjh6QQ?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 11:46:12 GMT",
-      "source": "Hoonsmart",
-      "category": "เศรษฐกิจไทย"
-    },
-    {
-      "title": "“ต่างชาติ-รายย่อย” เคาะซื้อหุ้นไทย 3.08 พันล้าน ดัน SET ปิดบวก 2 จุด | ข่าวหุ้นธุรกิจ - LINE TODAY",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1nU2VySnNMV1FKdzJONUVoanZCWkVzTXRDZldFandBRjhwTTh3dm5rc2twa2tRaHV2Q19qU21hUmRPMGg2MUdJRTB4RFFNQS0yQXRRUmlB?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 10:35:56 GMT",
-      "source": "LINE TODAY",
-      "category": "เศรษฐกิจไทย"
-    },
-    {
-      "title": "MDES จับมือ หัวเว่ย (Huawei) ผลักดันนวัตกรรม AI ที่น่าเชื่อถือ มุ่งปั้นไทยผงาดสู่ “ศูนย์กลาง AI อาเซียน” - MobileOcta",
-      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBkWUxkQ1ZjYzVnQnFLd2NjcXJ2MDFtSEg5Z3cxTk5QZTJyTmZmdHJPdHp5cEJKZ3U4cHBTRlk2dmN4MWZMUC1qak9YUEhQTVpWaks2SWVxWXptVDV5bW9VY0FYSjdwZzJST1hnSDd3?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 10:30:13 GMT",
-      "source": "MobileOcta",
-      "category": "เทคโนโลยี/AI"
-    },
-    {
-      "title": "\"ต่างชาติ-รายย่อย\" เคาะซื้อหุ้นไทย 3.08 พันล้าน ดัน SET ปิดบวก 2 จุด - ข่าวหุ้นธุรกิจออนไลน์",
-      "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFB5TzZqT3VBcUJFX2NGVEFhdldXa05Qd190dWxraUVoSkhmZEZ5bVFLSVRtbEFwRjVCWk5XOVJrYWd3QW40a3hpWmVxaVI5d0k?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 10:27:16 GMT",
-      "source": "ข่าวหุ้นธุรกิจออนไลน์",
-      "category": "เศรษฐกิจไทย"
-    },
-    {
-      "title": "Bitcoin Price Prediction: BTC falls as surging Oil prices revive inflation concerns - TMGM trading",
-      "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNb2kzNC1yMFhNYWJaNlBvVjZyaXJ5RGN0UTZsRGxrTWhhQW5NTmI1SHlOdlFNN05IRzVBR3d0QV9NN044aUd5d0JTX2E1S3JLT19WRFY0Q1NleTBSd3JtZ204VzVaZTNMN2RpdDFXNkxnMndBdWV3c0I1TjZ4WUd1YXJ3ZHhrdFJINFdZcWllOHlOXzQxM2xhdjJjNFdkSzFpb0tudUZYaFUwNFJ5ZjBKTXg1WkN4Z0s0QjFLcnFJMFFjTzA1aDFNWkVkMk5WZVNjczE2YWhnakl4TTdSSTN1Q0NR?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 10:25:52 GMT",
+      "title": "Gold slumps to near $4,050 as Middle East conflict fuels inflation worries - TMGM trading",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOVWtfQ1BjN0puMC11dDF1WEoyTU16YnNuLWxEZW9YQm51ZUlSdTdhM0tacjNtRVJFNlFMZGItUGZocVJTanBid3hWLXNLS0dmOFNoYm1zc1NQODNJVlBwWFVHSkNqMzN0OFk4VWlkOW1iX3JOM2MzMWg0TmtobGlpZ2doSHQxeHZtd0RlQVc3T1hnVzlfZ0JDa2l5ZlhmR0IwbzFKUUVLdWRPVzlteFM2WGJFNjJrSUlsRUlMWGFEaC12bS1UcFJkdEhXaDdiVDFHWnJuOUt3?oc=5",
+      "pubDate": "Thu, 23 Jul 2026 23:58:09 GMT",
       "source": "TMGM trading",
       "category": "ตลาดโลก"
     },
     {
-      "title": "หุ้นไทยวันนี้(23 ก.ค.) บวก 1.69 จุด ซื้อ DELTA-KTB ขาย AOT - Thunhoon",
-      "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE05VmhSX091VWtWci1Uc1RZekswek5SbGZzdWRaUVBUaXFHdkRuaERzOVpJT3NjTFlVYzJ2ZkxJVTE0LVAzd0p2N19xZ3Q2T0lDdnN3dTZBU1dOM2s?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 10:03:58 GMT",
-      "source": "Thunhoon",
-      "category": "เศรษฐกิจไทย"
-    },
-    {
-      "title": "“หุ้นไทย” 23 ก.ค. 2569 ปิดบวก 1.69 จุด หุ้นเทคฯฟื้น จับตาฟันด์โฟลว์ไหลออก - bangkokbiznews",
-      "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9EeXVISUpqcWw1UlhNdTZIX3J3ZG4wbjFLTkxNTmVXVU81TjhyeEl4UW00RUVyaTZqQTMzY0tCZ0VnX1l4ZUpMcmp1SGgxRy1WanpjRVpJbnN4TVpBcXNzb2FR?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 09:46:00 GMT",
-      "source": "bangkokbiznews",
-      "category": "เศรษฐกิจไทย"
-    },
-    {
-      "title": "“กรุงไทย” ชี้เงินบาทเผชิญ Two-way Risk จับตา Fed-ตะวันออกกลาง แนะใช้ Options | ข่าวหุ้นธุรกิจ - LINE TODAY",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBhbTllTWRCU1B6a0stUVE0eFU3elRNUklOV3RfSGRDRlFkeC1MX3Q0UERES0d4elpJb3BHRFMxLXc3VF84V2ZaZDE5eTMxZXRmdHBYcWxB?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 05:30:37 GMT",
+      "title": "KTB แนะทยอยสะสมบอนด์สหรัฐฯ หลังยีลด์พุ่ง 4.63% มอง FED คงดอกเบี้ยปีหน้า | ข่าวหุ้นธุรกิจ - LINE TODAY",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9KY2FYcVM2Y25ndEZMNTBhR3ZlNUVNUGlVY1hRc3RyWEJaUmJSYkstWHFMdVZMc3N0V1BSUWEzdHlhZ3d5MTEzbkZzN3hLdTRDQ3N4QVlR?oc=5",
+      "pubDate": "Thu, 23 Jul 2026 11:02:20 GMT",
       "source": "LINE TODAY",
       "category": "ตลาดโลก"
     },
     {
-      "title": "ค่าเงินบาทวันนี้ 33.65-34.00 บ./ดอลลาร์ รับความตึงเครียดในตะวันออกกลาง - กดดันราคาน้ำมันพุ่งแรง - efinanceThai",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPZkVrQVV1YXdGNEJhOVlWdFpwelhUR3VQR3FrTlRGdnotQkZ2bTVodVFFaE1YV1ZXMWhKemRvaHlqX0d6QkMxYldUYXEtUVJyTFB0ZGJaUVlob2ZtTkhtRUdhQUM0M254Ri1DbURYMy1oOHNNVWNfT25rV0x0Vkh0WHA0eW10RG8?oc=5",
-      "pubDate": "Thu, 23 Jul 2026 03:08:47 GMT",
-      "source": "efinanceThai",
-      "category": "อัตราแลกเปลี่ยน"
+      "title": "Global Bond Yields Jump as Oil Prices Surge, Inflation Fears Mount - Moomoo",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQak4yQVFjMDliYkQ5MGJkNDJSM25lMWxtT2RuaERlcFRFdkg0Tm00TWRhR1dWWVlhVWhGN2U5dFBldVg2ZkdIOXlPVlRDeGItalFRZ21oTFRBSjN2NWlxWXZ1czk4czRBNTZwdFM0SEtuT0NYOTdsTS1UY01ucXkzems4eUs4aUFULXNScGZwdWhpbm5wMFJhb3d4YzJILTQtYUlPRUs5UmFyTVV1azFFZ0x2TDdES0NGcDlQaEFCRDRTUE1pd2JHU0pRZ2FzQkxWbkZlQ1RR?oc=5",
+      "pubDate": "Thu, 23 Jul 2026 09:48:07 GMT",
+      "source": "Moomoo",
+      "category": "ตลาดโลก"
     },
     {
       "title": "KTB ประเมินค่าเงินบาทวันนี้ - Thunhoon",
@@ -86,25 +100,11 @@
       "category": "อัตราแลกเปลี่ยน"
     },
     {
-      "title": "If Inflation Rate Does Not Slow, Policymakers Lose Credibility -- Market Talk - Moomoo",
-      "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZGwxVzgwU29KdVFIYUNxZVAwSkQxRm9yblc1aURIUUxJZmVMREkxeGdqTUFJb3Q4cWgtdXZDYjdKY1B4U1RaU2RlalpEM2FiamtjU29fR0V3aUxoajhBMFNNMF9RZzRrd3hxM1lHSzZ0cmJtbDNiSXRTdS1aV2FqbEp6QzducTU5MTM3OTBJUHBRRF9oWGp4NFhWY000YjkzQ3FJZ0s4Ujk0UkVqRkR5eTRDdFJnb28zanB3TU9OTzU2bDR1VnZxUFBVVE5rVXBRSURVaE9OTXRfcUpXMGxJNGdB?oc=5",
-      "pubDate": "Wed, 22 Jul 2026 16:01:12 GMT",
-      "source": "Moomoo",
-      "category": "ตลาดโลก"
-    },
-    {
       "title": "J.P. Morgan ยังคงคำแนะนำ \"ซื้อ\" สำหรับหุ้น TD Synnex (SNX.US) พร้อมปรับเพิ่มราคาเป้าหมายขึ้นเป็น 350 ดอลลาร์สหรัฐ - Moomoo",
       "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQTGlEY0VXQTlCU0lOZzdEbkhtdnVOWXdVUktuMGlRZElXY3FGRXd6R3hzWlZoeFFncnEwX01GUU9PeXdQSmdPMDFpY0liaHRCZDJ6elc1Tlp6bDd2TDZzNXN4dlRoT1VibU1vVFUzMkJHbThUWm5vRmo3WWtGLXViUWhOQzJ6alVyQmJWRkhxcDVCWDl4TXNhWVVLcGZIVS1wckxXVXRB?oc=5",
       "pubDate": "Wed, 22 Jul 2026 15:39:44 GMT",
       "source": "Moomoo",
       "category": "ข่าว Synnex"
-    },
-    {
-      "title": "SCB ค่าเงินบาทประจำวันที่ 22 กรกฎาคม 2569 - มิติหุ้น",
-      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1Sc28zb1ZGQUtGcHhrQ19RNS1NV3BVRi1MMnNBZ1NESjVSUzllbUtPSmRhN2lDNHl2SUx4Mlp2UkwzbGRWYzI1VFdNcS1JS21qZGhJNDFn?oc=5",
-      "pubDate": "Wed, 22 Jul 2026 02:08:41 GMT",
-      "source": "มิติหุ้น",
-      "category": "อัตราแลกเปลี่ยน"
     },
     {
       "title": "SYNEXเชื่อไอโฟนขายดีด หวั่นราคาสูงขึ้นตามญี่ปุ่น - Thunhoon",
